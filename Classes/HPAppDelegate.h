@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class HnPViewController;
+@class HPViewController;
 
-@interface HnPAppDelegate : NSObject <UIApplicationDelegate> {
+@interface HPAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    HnPViewController *viewController;
+    HPViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet HnPViewController *viewController;
+@property (nonatomic, retain) IBOutlet HPViewController *viewController;
 
 @end
 

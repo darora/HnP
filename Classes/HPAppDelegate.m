@@ -6,10 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HnPAppDelegate.h"
-#import "HnPViewController.h"
+#import "HPAppDelegate.h"
+#import "HPViewController.h"
 
-@implementation HnPAppDelegate
+@implementation HPAppDelegate
 
 @synthesize window;
 @synthesize viewController;
