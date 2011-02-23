@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface HPViewController : UIViewController {
-
+	UIScrollView* gameArea;
+	UIView* palette;
 }
+
+@property (retain) UIScrollView* gameArea;
+@property (retain) UIView* palette;
+
+- (void)initializeViews;
 
 @end
 

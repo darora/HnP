@@ -23,15 +23,15 @@
 	28D7ACF60DDB3853001CB0EB /* HPViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {2217, 1260}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 228}";
+			sepNavSelRange = "{324, 0}";
+			sepNavVisRange = "{0, 376}";
 		};
 	};
 	28D7ACF70DDB3853001CB0EB /* HPViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2217, 1260}}";
-			sepNavSelRange = "{999, 0}";
-			sepNavVisRange = "{0, 1352}";
+			sepNavIntBoundsRect = "{{0, 0}, {2217, 1430}}";
+			sepNavSelRange = "{1567, 0}";
+			sepNavVisRange = "{258, 2458}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -136,6 +136,14 @@
 			AF7BCEB01314FEF1009C8DCB /* PBXTextBookmark */ = AF7BCEB01314FEF1009C8DCB /* PBXTextBookmark */;
 			AF7BCEB11314FEF1009C8DCB /* PBXTextBookmark */ = AF7BCEB11314FEF1009C8DCB /* PBXTextBookmark */;
 			AF7BCEB21314FEF1009C8DCB /* PBXTextBookmark */ = AF7BCEB21314FEF1009C8DCB /* PBXTextBookmark */;
+			AF7BCF0413151922009C8DCB /* PBXTextBookmark */ = AF7BCF0413151922009C8DCB /* PBXTextBookmark */;
+			AF7BCF0513151922009C8DCB /* PBXTextBookmark */ = AF7BCF0513151922009C8DCB /* PBXTextBookmark */;
+			AF7BCF0613151922009C8DCB /* PBXTextBookmark */ = AF7BCF0613151922009C8DCB /* PBXTextBookmark */;
+			AF7BCF0713151922009C8DCB /* PBXTextBookmark */ = AF7BCF0713151922009C8DCB /* PBXTextBookmark */;
+			AF7BCF0C13151AE1009C8DCB /* PBXBookmark */ = AF7BCF0C13151AE1009C8DCB /* PBXBookmark */;
+			AF7BCF0D13151AE1009C8DCB /* PBXTextBookmark */ = AF7BCF0D13151AE1009C8DCB /* PBXTextBookmark */;
+			AF7BCF0E13151AE1009C8DCB /* PBXTextBookmark */ = AF7BCF0E13151AE1009C8DCB /* PBXTextBookmark */;
+			AF7BCF1113151B49009C8DCB /* PBXTextBookmark */ = AF7BCF1113151B49009C8DCB /* PBXTextBookmark */;
 		};
 		sourceControlManager = AF6F63151314E8BE007B65AD /* Source Control */;
 		userBuildSettings = {
@@ -198,9 +206,10 @@
 	};
 	AF6F63A71314EFD7007B65AD /* PhysicsWorldController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1415, 2236}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1415, 2288}}";
 			sepNavSelRange = "{1799, 0}";
-			sepNavVisRange = "{306, 2929}";
+			sepNavVisRange = "{627, 2923}";
+			sepNavWindowFrame = "{{698, 70}, {1474, 1284}}";
 		};
 	};
 	AF6F63A91314F07D007B65AD /* PBXTextBookmark */ = {
@@ -238,7 +247,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
 		name = "HnPViewController.m: 55";
 		rLen = 0;
-		rLoc = 1302;
+		rLoc = 1430;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 0;
@@ -414,7 +423,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
 		name = "HPViewController.m: 63";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 2716;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 0;
@@ -554,7 +563,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
 		name = "HPViewController.m: 42";
 		rLen = 0;
-		rLoc = 999;
+		rLoc = 1127;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 0;
@@ -856,6 +865,11 @@
 		name = NSObjCRuntime.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSObjCRuntime.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1293, 4251}}";
+			sepNavSelRange = "{9671, 0}";
+			sepNavVisRange = "{9305, 841}";
+		};
 	};
 	AF7BCEAA1314FEF1009C8DCB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -946,5 +960,79 @@
 		rType = 0;
 		vrLen = 2929;
 		vrLoc = 306;
+	};
+	AF7BCF0413151922009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AF6F63A71314EFD7007B65AD /* PhysicsWorldController.m */;
+		name = "PhysicsWorldController.m: 111";
+		rLen = 0;
+		rLoc = 3261;
+		rType = 0;
+		vrLen = 3000;
+		vrLoc = 235;
+	};
+	AF7BCF0513151922009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* HPViewController.h */;
+		name = "HPViewController.h: 17";
+		rLen = 0;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 376;
+		vrLoc = 0;
+	};
+	AF7BCF0613151922009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
+		name = "HPViewController.m: 14";
+		rLen = 0;
+		rLoc = 335;
+		rType = 0;
+		vrLen = 1815;
+		vrLoc = 0;
+	};
+	AF7BCF0713151922009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
+		name = "HPViewController.m: 92";
+		rLen = 0;
+		rLoc = 2226;
+		rType = 0;
+		vrLen = 2240;
+		vrLoc = 0;
+	};
+	AF7BCF0C13151AE1009C8DCB /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AF7BCF0913151A32009C8DCB /* ground.png */;
+	};
+	AF7BCF0D13151AE1009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
+		name = "HPViewController.m: 92";
+		rLen = 0;
+		rLoc = 2116;
+		rType = 0;
+		vrLen = 2246;
+		vrLoc = 3;
+	};
+	AF7BCF0E13151AE1009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
+		name = "HPViewController.m: 103";
+		rLen = 0;
+		rLoc = 2594;
+		rType = 0;
+		vrLen = 2456;
+		vrLoc = 144;
+	};
+	AF7BCF1113151B49009C8DCB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HPViewController.m */;
+		name = "HPViewController.m: 76";
+		rLen = 0;
+		rLoc = 1567;
+		rType = 0;
+		vrLen = 2458;
+		vrLoc = 258;
 	};
 }
