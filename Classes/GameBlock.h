@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GameObject.h>
 
+typedef enum { wood, stone, iron, straw } blockType;
 
-@interface GameBlock : NSObject {
-
+@interface GameBlock : GameObject {
+	blockType category;
 }
 
+@property blockType category;
+
+- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
+
+
+- (UIImage*)getUIImage;
+- (void)changeBlockType;
 @end

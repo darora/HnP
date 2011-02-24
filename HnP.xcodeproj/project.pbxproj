@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02202CD21316C43E00F69278 /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 02202CD11316C43E00F69278 /* wood.png */; };
+		0261A0931316A5C400FA24E7 /* wolf-cropped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0261A0921316A5C400FA24E7 /* wolf-cropped.png */; };
+		027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 027C44B3131532A9007D0C51 /* GameObjectDelegate.m */; };
 		1D3623260D0F684500981E51 /* HPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* HPAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -96,16 +99,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02202CD11316C43E00F69278 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		0261A0921316A5C400FA24E7 /* wolf-cropped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wolf-cropped.png"; sourceTree = "<group>"; };
+		027C44B2131532A9007D0C51 /* GameObjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectDelegate.h; sourceTree = "<group>"; };
+		027C44B3131532A9007D0C51 /* GameObjectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectDelegate.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* HPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* HPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAppDelegate.m; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* HPAppDelegate.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = HPAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* HnP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HnP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* HnPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HnPViewController.xib; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28D7ACF60DDB3853001CB0EB /* HPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPViewController.h; sourceTree = "<group>"; };
-		28D7ACF70DDB3853001CB0EB /* HPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPViewController.m; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* HPViewController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = HPViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* HPViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = HPViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* HnP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HnP_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* HnP-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HnP-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -490,6 +497,8 @@
 				AF7BCDE81314F1BC009C8DCB /* GamePig.m */,
 				AF7BCDEA1314F1E4009C8DCB /* GameObjectFoundry.h */,
 				AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */,
+				027C44B2131532A9007D0C51 /* GameObjectDelegate.h */,
+				027C44B3131532A9007D0C51 /* GameObjectDelegate.m */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -522,6 +531,8 @@
 		AF7BCEF91315191F009C8DCB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				02202CD11316C43E00F69278 /* wood.png */,
+				0261A0921316A5C400FA24E7 /* wolf-cropped.png */,
 				AF7BCF0813151A32009C8DCB /* background.png */,
 				AF7BCF0913151A32009C8DCB /* ground.png */,
 				AF7BCEFA1315191F009C8DCB /* breath-bar.png */,
@@ -611,6 +622,8 @@
 				AF7BCF031315191F009C8DCB /* windblow.png in Resources */,
 				AF7BCF0A13151A32009C8DCB /* background.png in Resources */,
 				AF7BCF0B13151A32009C8DCB /* ground.png in Resources */,
+				0261A0931316A5C400FA24E7 /* wolf-cropped.png in Resources */,
+				02202CD21316C43E00F69278 /* wood.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +688,7 @@
 				AF7BCDEF1314F238009C8DCB /* PhysicsObjectFoundry.m in Sources */,
 				AF7BCDF21314F269009C8DCB /* HPBridging.m in Sources */,
 				AF7BCE6E1314FC0F009C8DCB /* Helpers.cpp in Sources */,
+				027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

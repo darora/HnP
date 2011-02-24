@@ -16,6 +16,9 @@
 
 @synthesize gameArea;
 @synthesize palette;
+@synthesize objCounter;
+@synthesize objects;
+@synthesize phy;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -35,12 +38,18 @@
 */
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	objCounter = 0;
+	self.objects = [NSMutableArray arrayWithCapacity:5];
+	
+	
+	
 }
-*/
+
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -72,6 +81,31 @@
  Custom Methods start here
  */
 
+- (void)addToGameArea:(GameObject*)o {
+	BOOL present = NO;
+	int x = [o number];
+	for (int i=0; i<[self.objects count]; i++)
+		if (x == [[self.objects objectAtIndex:i] number])
+			present = YES;
+	if (!present)
+	{
+		[self.objects addObject:o];
+		[gameArea addSubview:o.view];
+	}
+}
+
+- (void)removeFromGameArea:(GameObject*)o {
+	for (int i=0; i<[self.objects count]; i++) {
+		GameObject* tmp = [self.objects objectAtIndex:i];
+		if (o.number == [tmp number]) {
+			[tmp.view removeFromSuperview];
+			[self.objects removeObjectAtIndex:i];
+			[tmp release];
+			return;
+		}
+	}
+}
+
 - (void)initializeViews {
 	//TODO: Disable iOS toolbar
 	CGRect tmp = CGRectMake(0, 0, 1024, PALETTE_HEIGHT);
@@ -86,6 +120,7 @@
 	palette = [[UIView alloc] initWithFrame:tmp];
 	palette.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:palette];
+	[palette release];
 	
 	gameArea = [[UIScrollView alloc] initWithFrame:CGRectMake(0, PALETTE_HEIGHT, 1024, 768 - PALETTE_HEIGHT)];
 	
@@ -101,9 +136,51 @@
 	[gameArea addSubview:bgView];
 	[gameArea addSubview:grndView];
 	[gameArea setContentSize:CGSizeMake(SCROLL_WIDTH, 768-PALETTE_HEIGHT)];
+	[self.view addSubview:gameArea];
+	[gameArea release];
 	
 	[bgView release];
-	[grndView release];	
+	[grndView release];
 }
+
+- (void)handleTranslation:(NSNotification*)n {
+	GameObject* o = [n object];
+	if ([o.view isDescendantOfView:self.palette]) {
+	//TODO:add to game area & replace in palette if required
+		
+	}
+	
+	
+}
+
+- (void)handleDoubleTap:(NSNotification*)n {
+	GameObject* o = [n object];
+	if ([o.view isDescendantOfView:palette])
+		return;	//Maybe an UIAlert??
+	if ([o class] == [GameBlock class]) {
+		//Just remove from UI models
+	}
+	else {
+		//Its a pig or wolf. Return to palette
+		
+	}
+
+	
+}
+
+- (void)handleSingleTap:(NSNotification*)n {
+	GameBlock* o = [n object];
+	//Breath for wolf
+	
+}
+
+
+
+
+
+
+
+
+
 
 @end
