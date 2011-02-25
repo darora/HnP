@@ -27,7 +27,7 @@
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n {
 	//Must be maintained for easy saving/loading
 	if (self = [super init]) {
-		self.angle = d2r(a);
+		self.angle = a;
 		self.size = CGSizeMake(f.size.width, f.size.height);
 		self.center = CGPointMake(f.origin.x + f.size.width/2, f.origin.y + f.size.height/2);
 		self.number = n;
@@ -96,7 +96,6 @@
 	UIRotationGestureRecognizer *rotateGesture = (UIRotationGestureRecognizer *) gesture;
 	
 	if (rotateGesture.state == UIGestureRecognizerStateBegan || rotateGesture.state == UIGestureRecognizerStateChanged) {	//WHY is this necessary? Removable?
-		
 		//UIView *view = rotateGesture.view;
 		self.angle += rotateGesture.rotation;
 		self.view.transform = CGAffineTransformRotate(self.view.transform, rotateGesture.rotation);
@@ -165,6 +164,33 @@
 
 - (void)restoreToPalette {
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"restoreToPalette" object:self]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	//Specified by NSCoding protocol
+	//MODIFIES: encoder:adds keyed entries for CGSize size, CGPoint center, doubles angle & scale, int number
+	[encoder encodeCGSize:self.size forKey:@"size"];
+	[encoder encodeCGPoint:self.center forKey:@"center"];
+	[encoder encodeDouble:self.angle forKey:@"angle"];
+	[encoder encodeDouble:self.scale forKey:@"scale"];
+	[encoder encodeInt:self.number forKey:@"number"];
+} 
+
+- (id)initWithCoder:(NSCoder *)decoder 
+	//Specified by NSCoding protocol
+	//RETURNS: New GameObject with decoded info
+{
+	CGSize sz = [decoder decodeCGSizeForKey:@"size"];
+	CGPoint cen = [decoder decodeCGPointForKey:@"center"];
+	double ang = [decoder decodeDoubleForKey:@"angle"];
+	double sca = [decoder decodeDoubleForKey:@"scale"];
+	int num = [decoder decodeIntForKey:@"number"];
+	CGRect tmp = CGRectMake(cen.x - sz.width/2, cen.y - sz.height/2, sz.width, sz.height);
+	if ([self initWithFrame:tmp Angle:ang Number:num]) {
+		self.scale = sca;
+	}
+	else self = nil;
+	return self; 
 }
 
 

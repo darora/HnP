@@ -22,4 +22,6 @@ typedef enum { wood, stone, iron, straw } blockType;
 
 - (UIImage*)getUIImage;
 - (void)changeBlockType;
+- (void)updateCategory;
+
 @end

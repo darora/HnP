@@ -14,6 +14,7 @@
 #import <GameBlock.h>
 #import <GameObjectFoundry.h>
 #import <PhysicsWorldController.h>
+#import <HPSavedGames.h>
 
 @interface HPViewController : UIViewController {
 	UIScrollView* gameArea;
@@ -21,8 +22,13 @@
 	int objCounter;
 	PhysicsWorldController* phy;
 	
+	UIButton *load, *save;
+	UITextField * nameField;
+	
 	NSMutableArray* pObjects;
 	NSMutableArray* objects;
+	HPSavedGames* table;
+	UIPopoverController* pop;
 }
 
 @property (retain) UIScrollView* gameArea;
@@ -30,6 +36,9 @@
 @property (retain) NSMutableArray* objects;
 @property (retain) NSMutableArray* pObjects;
 @property (retain) PhysicsWorldController* phy;
+@property (retain) UIButton* load;
+@property (retain) UIButton* save;
+@property (retain) UITextField * nameField;
 @property int objCounter;
 
 - (void)initializeViews;

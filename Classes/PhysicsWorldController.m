@@ -169,8 +169,4 @@
 	tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
 }
 
-
-
-
-
 @end

@@ -20,6 +20,9 @@
 @synthesize objects;
 @synthesize pObjects;
 @synthesize phy;
+@synthesize save;
+@synthesize load;
+@synthesize nameField;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -94,8 +97,8 @@
 	if (!present)
 	{
 		[self.objects addObject:o];
-		[gameArea addSubview:o.view];
 	}
+	[gameArea addSubview:o.view];
 }
 
 - (void)removeFromGameArea:(GameObject*)o {
@@ -153,14 +156,14 @@
 	UIToolbar* tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 728, 1024, 40)];
 	[self.view addSubview:tb];
 	[tb release];
-	UIButton* save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	self.save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	save.frame = CGRectMake(50, 5, 80, 30);
 	[save setTitle:@"Save" forState:UIControlStateNormal];
 	[save addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[tb addSubview:save];
 	//[save release];
 	
-	UIButton* load = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	self.load = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	load.frame = CGRectMake(150, 5, 80, 30);
 	[load setTitle:@"Load" forState:UIControlStateNormal];
 	[load addTarget:self action:@selector(loadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -200,6 +203,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSingleTap:) name:@"wolfWasTapped" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDoubleTap:) name:@"objectDidGetDoubleTapped" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaletteReturn:) name:@"restoreToPalette" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileSelected:) name:@"fileNameChosen" object:nil];
 }
 
 - (void)handleTranslation:(NSNotification*)n {
@@ -276,11 +280,100 @@
 }
 
 - (void)saveButtonPressed {
+	//UIViewController* tmp = [[UIViewController alloc] init
+//	if (_colorPicker == nil) {
+//        self.colorPicker = [[[ColorPickerController alloc] 
+//							 initWithStyle:UITableViewStylePlain] autorelease];
+//        _colorPicker.delegate = self;
+//        self.colorPickerPopover = [[[UIPopoverController alloc]
+//									initWithContentViewController:_colorPicker] autorelease];
+//    }
+//    [self.colorPickerPopover presentPopoverFromBarButtonItem:sender
+//									permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	UIAlertView* dialog = [[UIAlertView alloc] init];
+	[dialog setDelegate:self];
+	[dialog setTitle:@"Enter File Name"];
+	[dialog setMessage:@" "];
+	[dialog addButtonWithTitle:@"Cancel"];
+	[dialog addButtonWithTitle:@"OK"];
 	
+	nameField = [[UITextField alloc] initWithFrame:CGRectMake(20.0, 30.0, 245.0, 25.0)];
+	[nameField setBackgroundColor:[UIColor whiteColor]];
+	[dialog addSubview:nameField];
+	//[dialog setTransform: moveUp];
+	[dialog show];
+	[dialog release];
+	[nameField release];
+}
+
+- (void) alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSString* inputText = [nameField text];
+	NSLog(@"%@ %d", inputText, buttonIndex);
+	if (buttonIndex == 1) {
+		NSMutableData *data = [[NSMutableData alloc] init];
+		NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+		[archiver encodeRootObject:self.objects];
+		[archiver finishEncoding];
+		NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString *plistPath = [rootPath stringByAppendingPathComponent:inputText];
+		[data writeToFile:plistPath atomically:YES];
+		[archiver release];
+		[data release];
+	}
+	else
+		return;//Cancel
 }
 
 - (void)loadButtonPressed {
-	
+	table = [[HPSavedGames alloc] 
+							 initWithStyle:UITableViewStylePlain];
+	pop = [[UIPopoverController alloc] 
+									initWithContentViewController:table];
+	[pop presentPopoverFromRect:load.frame inView:load.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (void)loadFileSelected:(NSNotification*)n {
+	NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:[n object]];
+	NSData *data = [NSData dataWithContentsOfFile:plistPath];
+	NSKeyedUnarchiver *ua = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+	if (data != NULL) {
+		[self resetScreen];
+		while ([pObjects count] > 0) {
+			GameObject* o = [pObjects objectAtIndex:0];
+			[o.view removeFromSuperview];
+			[pObjects removeObjectAtIndex:0];
+		}
+		BOOL bwolf = YES, bpig = YES;
+		self.objects = [ua decodeObject];
+		for (int i=0; i < [self.objects count]; i++) {
+			GameObject* tmp = [self.objects objectAtIndex:i];
+			[self addToGameArea:tmp];
+			[tmp updateView];
+			if ([tmp class] == [GameWolf class])
+				bwolf = NO;
+			else if ([tmp class] == [GamePig class])
+				bpig = NO;
+		}
+		GameBlock* block = [[GameBlock alloc] initWithFrame:blockDefault Angle:d2r(0) Number:objCounter++];
+		[palette addSubview:block.view];
+		[pObjects addObject:block];
+		
+		if (bpig) {
+			GamePig* pig = [[GamePig alloc] initWithFrame:pigDefault Angle:d2r(0) Number:objCounter++];
+			[pObjects addObject:pig];
+			[palette addSubview:pig.view];
+		}
+		if (bwolf) {
+			GameWolf* wolf = [[GameWolf alloc] initWithFrame:wolfDefault Angle:d2r(0) Number:objCounter++];
+			[pObjects addObject:wolf];
+			[palette addSubview:wolf.view];
+		}		
+	}
+	[data release];
+    [pop dismissPopoverAnimated:YES];
+	[table release];
+	[pop release];
 }
 
 - (void)resetButtonPressed {
@@ -291,6 +384,8 @@
 	
 }
 
+- (void)setColorButtonTapped {
+}
 
 
 

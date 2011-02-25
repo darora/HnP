@@ -16,7 +16,7 @@
 #define wolfDefault CGRectMake(0, 0, 90, 60)
 #define blockDefault CGRectMake(175, 0, 60, 60)
 
-@interface GameObject : UIViewController {
+@interface GameObject : UIViewController <NSCoding> {
 	CGSize size;
 	CGFloat angle;
 	CGFloat scale;
@@ -41,4 +41,7 @@
 - (void)doubleTap:(UIGestureRecognizer *)gesture;
 - (void)translate:(UIGestureRecognizer *)gesture;
 
+
+- (void)encodeWithCoder:(NSCoder *)encoder;
+- (id)initWithCoder:(NSCoder *)decoder;
 @end

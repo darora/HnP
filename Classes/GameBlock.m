@@ -105,6 +105,10 @@
 
 - (void)changeBlockType {
 	self.category = self.category + 1;
+	[self updateCategory];
+}
+
+- (void)updateCategory {
 	UIImage *bg = [self getUIImage];
 	UIView* sup = self.view.superview;
 	[self.view removeFromSuperview];
@@ -122,6 +126,24 @@
 	if (tapGesture.state == UIGestureRecognizerStateEnded) {
 		[self changeBlockType];
 	}
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	//Specified by NSCoding protocol
+	//MODIFIES: encoder:adds keyed entry for enum blockType
+	[super encodeWithCoder:encoder];
+	[encoder encodeInt:self.category forKey:@"category"];
+} 
+
+- (id)initWithCoder:(NSCoder *)decoder 
+//Specified by NSCoding protocol
+//RETURNS: New GameObject with decoded info
+{
+	if (self = [super initWithCoder:decoder])
+		self.category = [decoder decodeIntForKey:@"category"];
+	else self = nil;
+	[self updateCategory];
+	return self;
 }
 
 @end

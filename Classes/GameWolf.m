@@ -131,4 +131,21 @@
     return layers; 
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	//Specified by NSCoding protocol
+	//MODIFIES: encoder:adds keyed entry for enum blockType
+	[super encodeWithCoder:encoder];
+	[encoder encodeInt:self.lives forKey:@"lives"];
+} 
+
+- (id)initWithCoder:(NSCoder *)decoder 
+//Specified by NSCoding protocol
+//RETURNS: New GameObject with decoded info
+{
+	if (self = [super initWithCoder:decoder])
+		self.lives = [decoder decodeIntForKey:@"lives"];
+	else self = nil;
+	return self;
+}
+
 @end
