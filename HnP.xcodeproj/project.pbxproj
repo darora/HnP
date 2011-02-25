@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		02202CD21316C43E00F69278 /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 02202CD11316C43E00F69278 /* wood.png */; };
+		02307A8E131795D2005F1A9F /* iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A8D131795D2005F1A9F /* iron.png */; };
+		02307A91131795E9005F1A9F /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A8F131795E9005F1A9F /* stone.png */; };
+		02307A92131795E9005F1A9F /* straw.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A90131795E9005F1A9F /* straw.png */; };
 		0261A0931316A5C400FA24E7 /* wolf-cropped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0261A0921316A5C400FA24E7 /* wolf-cropped.png */; };
+		027990EF1317D42B0073AF10 /* wolfs.png in Resources */ = {isa = PBXBuildFile; fileRef = 027990EE1317D42B0073AF10 /* wolfs.png */; };
+		027991031317D5110073AF10 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027991021317D5110073AF10 /* QuartzCore.framework */; };
 		027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 027C44B3131532A9007D0C51 /* GameObjectDelegate.m */; };
 		1D3623260D0F684500981E51 /* HPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* HPAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -100,7 +105,12 @@
 
 /* Begin PBXFileReference section */
 		02202CD11316C43E00F69278 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		02307A8D131795D2005F1A9F /* iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iron.png; sourceTree = "<group>"; };
+		02307A8F131795E9005F1A9F /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone.png; sourceTree = "<group>"; };
+		02307A90131795E9005F1A9F /* straw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = straw.png; sourceTree = "<group>"; };
 		0261A0921316A5C400FA24E7 /* wolf-cropped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wolf-cropped.png"; sourceTree = "<group>"; };
+		027990EE1317D42B0073AF10 /* wolfs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfs.png; sourceTree = "<group>"; };
+		027991021317D5110073AF10 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		027C44B2131532A9007D0C51 /* GameObjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectDelegate.h; sourceTree = "<group>"; };
 		027C44B3131532A9007D0C51 /* GameObjectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectDelegate.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,6 +266,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				027991031317D5110073AF10 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +280,8 @@
 				AF7BCED413151912009C8DCB /* extra-images */,
 				AF7BCDDD1314F162009C8DCB /* GameObjects */,
 				AF6F63A51314EFA2007B65AD /* Physics */,
-				1D3623240D0F684500981E51 /* HPAppDelegate.h */,
 				1D3623250D0F684500981E51 /* HPAppDelegate.m */,
+				1D3623240D0F684500981E51 /* HPAppDelegate.h */,
 				28D7ACF60DDB3853001CB0EB /* HPViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* HPViewController.m */,
 				AF7BCDF01314F269009C8DCB /* HPBridging.h */,
@@ -295,6 +306,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				027991021317D5110073AF10 /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -531,6 +543,10 @@
 		AF7BCEF91315191F009C8DCB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				027990EE1317D42B0073AF10 /* wolfs.png */,
+				02307A8F131795E9005F1A9F /* stone.png */,
+				02307A90131795E9005F1A9F /* straw.png */,
+				02307A8D131795D2005F1A9F /* iron.png */,
 				02202CD11316C43E00F69278 /* wood.png */,
 				0261A0921316A5C400FA24E7 /* wolf-cropped.png */,
 				AF7BCF0813151A32009C8DCB /* background.png */,
@@ -624,6 +640,10 @@
 				AF7BCF0B13151A32009C8DCB /* ground.png in Resources */,
 				0261A0931316A5C400FA24E7 /* wolf-cropped.png in Resources */,
 				02202CD21316C43E00F69278 /* wood.png in Resources */,
+				02307A8E131795D2005F1A9F /* iron.png in Resources */,
+				02307A91131795E9005F1A9F /* stone.png in Resources */,
+				02307A92131795E9005F1A9F /* straw.png in Resources */,
+				027990EF1317D42B0073AF10 /* wolfs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

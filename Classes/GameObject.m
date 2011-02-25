@@ -46,6 +46,12 @@
 	self.view.transform = CGAffineTransformRotate(self.view.transform, self.angle);
 }
 
+- (void)updateView {
+	self.view.center = self.center;
+	self.view.transform = CGAffineTransformRotate(CGAffineTransformIdentity, self.angle);
+	self.view.transform = CGAffineTransformScale(self.view.transform, self.scale, self.scale);
+}
+
 - (void)addGestures {
 	//Binds the 3 gestures recognizers (pinch, rotate, pan) to the views created
 	//MODIFIES: self.view: Adds gesture recognizers
@@ -136,12 +142,13 @@
 		//UIView *view = panGesture.view;
 		CGPoint translation = [panGesture translationInView:self.view.superview];
 		[self setCenter:CGPointMake(self.center.x + translation.x, self.center.y + translation.y)];
+		[self updateView];
 		[panGesture setTranslation:CGPointZero inView:self.view.superview];
 		
 	}
 	if (panGesture.state == UIGestureRecognizerStateEnded) {
 		[panGesture setTranslation:CGPointZero inView:panGesture.view.superview];
-		if ((self.view.frame.origin.y + self.view.frame.size.height) > 100)
+		if ((self.view.frame.origin.y + self.view.frame.size.height) > 60)
 		{
 			[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"objectDidTranslate" object:self]];
 			//if ([self.img isDescendantOfView:controller.pallette]) {

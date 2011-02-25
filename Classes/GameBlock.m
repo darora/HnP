@@ -14,18 +14,18 @@
 @synthesize category;
 
 - (void)setCategory:(blockType)f {
-	f = f%3;
+	f = f%4;
 	category = f;
 }
 
-- (CGSize)size {
-	//Provide size based on current block type, rather than the view size
-}
+//- (CGSize)size {
+//	//Provide size based on current block type, rather than the view size
+//}
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n {
 	self.category = wood;	
 	if (self = [super initWithFrame:f Angle:a Number:n]) {
-		UIImage *bgImage = [self getUIImage];
+		UIImage *bgImage = [UIImage imageNamed:@"wood.png"];
 		self.view = [[[UIImageView alloc] initWithImage:bgImage] autorelease];
 		[self addGestures];
 		[self setViewProps];
@@ -97,7 +97,7 @@
 			bgImage = [UIImage imageNamed:@"straw.png"];
 			break;
 		default:
-			bgImage = [UIImage imageNamed:@"straw.png"];
+			bgImage = [UIImage imageNamed:@"wood.png"];
 			break;
 	}
 	return bgImage;
@@ -109,6 +109,7 @@
 	UIView* sup = self.view.superview;
 	[self.view removeFromSuperview];
 	self.view = [[[UIImageView alloc] initWithImage:bg] autorelease];
+	[self addGestures];
 	[self setViewProps];
 	[sup addSubview:self.view];
 }

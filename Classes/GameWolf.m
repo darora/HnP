@@ -18,6 +18,7 @@
 		lives = 3;
 		UIImage *bgImage = [UIImage imageNamed:@"wolf-cropped.png"];
 		self.view = [[[UIImageView alloc] initWithImage:bgImage] autorelease];
+		//[self animate];
 		[self addGestures];
 		[self setViewProps];
 	}
@@ -70,6 +71,31 @@
 	[tapGestureRecognizer release];
 }
 
+- (void)animate {
+	[[[self view] layer] removeAllAnimations];		
+	[[[self view] layer] removeAnimationForKey:@"contents"];
+	NSArray* imgs = [self splitImage:[[UIImage imageNamed:@"wolfs.png"] CGImage]];
+	//[self.view setAnimationImages:imgs];
+	//		[self.view setAnimationDuration:5.0];
+	//		[self.view startAnimating];
+	//		[imgs retain];
+	//NSMutableArray* times = [NSMutableArray arrayWithCapacity:25];
+//	for (int i=0; i < 25; i++) {
+//		[times addObject:[NSNumber numberWithFloat:1/25*i]];
+//	}
+	CALayer* image = [[CALayer layer] retain];
+	image.frame = wolfDefault;
+	image.contents = (id)[[UIImage imageNamed:@"wolf-cropped.png"] CGImage];
+	CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+	//		animation.calculationMode = kCAAnimationDiscrete;
+	animation.duration = 100/25;
+	animation.values = imgs;
+	//		animation.keyTimes = times;
+	[image addAnimation:animation forKey:@"contents"];
+	self.view = [[UIImageView alloc] initWithFrame:wolfDefault];
+	[self.view.layer addSublayer:image];
+}
+
 - (void)tap:(UIGestureRecognizer *)gesture {
 	// MODIFIES: object's obstacle type
 	// REQUIRES: game in designer mode
@@ -78,6 +104,31 @@
 	if (tapGesture.state == UIGestureRecognizerStateEnded) {
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"wolfWasTapped" object:self]];
 	}
+}
+
+- (NSMutableArray*)splitImage:(CGImageRef)img
+{	
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(img), CGImageGetHeight(img));
+	
+	NSMutableArray *layers = [NSMutableArray arrayWithCapacity:25];
+	
+	for(int x = 0;x < 5;x++) {
+		for(int y = 0;y < 3;y++) {
+			CGRect frame = CGRectMake((imageSize.width / 5) * x,
+									  (imageSize.height / 3) * y,
+									  (imageSize.width / 5),
+									  (imageSize.height / 3));
+			
+			CALayer *layer = [CALayer layer];
+			layer.frame = frame;
+			CGImageRef subimage = CGImageCreateWithImageInRect(img, frame);
+			//layer.contents = (id)subimage;
+			//CFRelease(subimage);
+			//UIImage* tmp = [UIImage imageWithCGImage:subimage];
+			[layers addObject:(id)subimage];
+		}
+    }
+    return layers; 
 }
 
 @end

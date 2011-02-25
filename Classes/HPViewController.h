@@ -21,16 +21,28 @@
 	int objCounter;
 	PhysicsWorldController* phy;
 	
+	NSMutableArray* pObjects;
 	NSMutableArray* objects;
 }
 
 @property (retain) UIScrollView* gameArea;
 @property (retain) UIView* palette;
 @property (retain) NSMutableArray* objects;
+@property (retain) NSMutableArray* pObjects;
 @property (retain) PhysicsWorldController* phy;
 @property int objCounter;
 
 - (void)initializeViews;
 
+
+
+- (void)addToGameArea:(GameObject*)o;
+- (void)removeFromGameArea:(GameObject*)o;
+- (void)initializeViews;
+- (void)initializePalette;
+- (void)handleTranslation:(NSNotification*)n;
+- (void)handleDoubleTap:(NSNotification*)n;
+- (void)handleSingleTap:(NSNotification*)n;
+- (void)handlePaletteReturn:(NSNotification*)n;
 @end
 

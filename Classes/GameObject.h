@@ -33,6 +33,7 @@
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
 - (void)addGestures;
 - (void)setViewProps;
+- (void)updateView;
 - (void)restoreToPalette;
 
 - (void)rotate:(UIGestureRecognizer *)gesture;
