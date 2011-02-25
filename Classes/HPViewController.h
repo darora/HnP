@@ -40,9 +40,17 @@
 - (void)removeFromGameArea:(GameObject*)o;
 - (void)initializeViews;
 - (void)initializePalette;
+- (void)initializeListeners;
 - (void)handleTranslation:(NSNotification*)n;
 - (void)handleDoubleTap:(NSNotification*)n;
 - (void)handleSingleTap:(NSNotification*)n;
 - (void)handlePaletteReturn:(NSNotification*)n;
+
+- (void)resetScreen;
+
+- (void)saveButtonPressed;
+- (void)loadButtonPressed;
+- (void)resetButtonPressed;
+- (void)startButtonPressed;
 @end
 

@@ -150,9 +150,37 @@
 	
 	
 	//Buttons
-	UIToolbar* tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 738, 1024, 30)];
+	UIToolbar* tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 728, 1024, 40)];
 	[self.view addSubview:tb];
 	[tb release];
+	UIButton* save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	save.frame = CGRectMake(50, 5, 80, 30);
+	[save setTitle:@"Save" forState:UIControlStateNormal];
+	[save addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[tb addSubview:save];
+	//[save release];
+	
+	UIButton* load = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	load.frame = CGRectMake(150, 5, 80, 30);
+	[load setTitle:@"Load" forState:UIControlStateNormal];
+	[load addTarget:self action:@selector(loadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[tb addSubview:load];
+	//[load release];
+	
+	UIButton* reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	reset.frame = CGRectMake(894, 5, 80, 30);
+	[reset setTitle:@"Reset" forState:UIControlStateNormal];
+	[reset addTarget:self action:@selector(resetButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[tb addSubview:reset];
+	//[reset release];
+	
+	UIButton* start = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	start.frame = CGRectMake(470, 5, 80, 30);
+	[start setTitle:@"Start" forState:UIControlStateNormal];
+	[start addTarget:self action:@selector(startButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[tb addSubview:start];
+	//[start release];
+	
 }
 
 - (void)initializePalette {
@@ -214,7 +242,6 @@
 	
 }
 
-
 - (void)handlePaletteReturn:(NSNotification*)n {
 	GameObject* o = [n object];
 	
@@ -234,6 +261,34 @@
 	o.angle = d2r(0);
 	o.scale = 1;
 	[o updateView];
+}
+
+- (void)resetScreen {
+	while ([objects count] > 0) {
+		[self removeFromGameArea:[objects objectAtIndex:0]];
+	}
+	while ([pObjects count] > 0) {
+		GameObject* o = [pObjects objectAtIndex:0];
+		[o.view removeFromSuperview];
+		[pObjects removeObjectAtIndex:0];
+	}
+	[self initializePalette];
+}
+
+- (void)saveButtonPressed {
+	
+}
+
+- (void)loadButtonPressed {
+	
+}
+
+- (void)resetButtonPressed {
+	[self resetScreen];
+}
+
+- (void)startButtonPressed {
+	
 }
 
 
