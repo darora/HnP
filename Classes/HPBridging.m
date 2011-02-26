@@ -11,7 +11,7 @@
 
 @implementation HPBridging
 
--(CGPoint*)getVerticesForN:(int)n view:(UIView*)v {
++(CGPoint*)getVerticesForN:(int)n view:(UIView*)v {
 	if (n < 3)
 		throw "Polygon must have more than 2 sides";
 	

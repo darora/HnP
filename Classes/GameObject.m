@@ -193,6 +193,30 @@
 	return self; 
 }
 
++ (NSMutableArray*)splitImage:(CGImageRef)img xSplits:(int)x ySplits:(int)y
+{	
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(img), CGImageGetHeight(img));
+	
+	NSMutableArray *layers = [NSMutableArray arrayWithCapacity:25];
+	
+	for(int x = 0;x < 5;x++) {
+		for(int y = 0;y < 3;y++) {
+			CGRect frame = CGRectMake((imageSize.width / 5) * x,
+									  (imageSize.height / 3) * y,
+									  (imageSize.width / 5),
+									  (imageSize.height / 3));
+			
+			CALayer *layer = [CALayer layer];
+			layer.frame = frame;
+			CGImageRef subimage = CGImageCreateWithImageInRect(img, frame);
+			//layer.contents = (id)subimage;
+			//CFRelease(subimage);
+			//UIImage* tmp = [UIImage imageWithCGImage:subimage];
+			[layers addObject:(id)subimage];
+		}
+    }
+    return layers; 
+}
 
 
 @end

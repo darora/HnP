@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
 #import <GameObject.h>
 
 @interface GameWolf : GameObject {
@@ -17,6 +16,4 @@
 @property int lives;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
-- (NSMutableArray*)splitImage:(CGImageRef)img;
-
 @end

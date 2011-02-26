@@ -8,11 +8,13 @@
 
 #import "PhysicsWorldController.h"
 
-#define DEF_HEIGHT 768.0
-#define DEF_WIDTH 1024.0
+#define DEF_HEIGHT 708.0
+#define DEF_WIDTH 1600.0
+#define GROUND_HEIGHT 100.0
 
 @implementation PhysicsWorldController
 
+@synthesize tickTimer;
 
 
 -(void)createPhysicsWorld
@@ -37,7 +39,7 @@
 	b2EdgeShape groundBox;
 	
 	// bottom
-	groundBox.Set(b2Vec2(0,0), b2Vec2(screenSize.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(0,GROUND_HEIGHT/PTM_RATIO), b2Vec2(screenSize.width/PTM_RATIO,GROUND_HEIGHT/PTM_RATIO));
 	groundBody->CreateFixture(&groundBox, 0);
 	
 	// top
@@ -53,8 +55,9 @@
 	groundBody->CreateFixture(&groundBox, 0);
 }
 
--(void)addPhysicalBodyForView:(UIView *)physicalView
+-(void)addPhysicalBodyForGameObject:(GameObject *)object
 {
+	UIView* physicalView = [object view];
 	b2BodyDef bodyDef;
 //	if ([physicalView isKindOfClass:[PolygonView class]] && [physicalView dynamic])
 //		bodyDef.type = b2_dynamicBody;
@@ -64,7 +67,7 @@
 	
 	
 	bodyDef.position.Set(p.x/PTM_RATIO, (DEF_HEIGHT - p.y)/PTM_RATIO);
-	bodyDef.userData = physicalView;
+	bodyDef.userData = object;
 	
 	// Tell the physics world to create the body
 	b2Body *body = world->CreateBody(&bodyDef);
@@ -105,7 +108,7 @@
 //		else
 		{
 			//For UIViews added from Interface Builder
-			CGPoint boxDimensions = CGPointMake(physicalView.bounds.size.width/PTM_RATIO/2.0,physicalView.bounds.size.height/PTM_RATIO/2.0);
+			CGPoint boxDimensions = CGPointMake(object.scale*physicalView.bounds.size.width/PTM_RATIO/2.0,object.scale*physicalView.bounds.size.height/PTM_RATIO/2.0);
 			dynamicBox.SetAsBox(boxDimensions.x, boxDimensions.y);
 		}
 		b2FixtureDef fixtureDef;
@@ -142,31 +145,50 @@
 //				b->ApplyForce(F, pos);
 //			}	
 //			
-			UIView *oneView = (UIView *)b->GetUserData();
-			
+			//UIView *oneView = (UIView *)b->GetUserData();
+			GameObject* o = (GameObject*)b->GetUserData();
 			// y Position subtracted because of flipped coordinate system
 			CGPoint newCenter = CGPointMake(b->GetPosition().x * PTM_RATIO,
 											DEF_HEIGHT - b->GetPosition().y * PTM_RATIO);
-			oneView.center = newCenter;
+			o.center = newCenter;
 			
-			CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
+			double ang = - b->GetAngle();
 			
-			oneView.transform = transform;
+			o.angle = ang;
+			[o updateView];
+			//oneView.transform = transform;
 		}
 	}
 }
 
--(id)initWithViews:(NSMutableArray*)views {
-	//Should be nil terminated array of views
-	for (UIView *oneView in views)
-	{
-		[self addPhysicalBodyForView:oneView];
+-(id)initWithObjectsArray:(NSMutableArray*)objects {
+	if (self = [super init]) {
+		[self createPhysicsWorld];
+		for (int i=0; i<[objects count]; i++)
+		{
+			//UIView* oneView = [[objects objectAtIndex:i] view];
+			[self addPhysicalBodyForGameObject:[objects objectAtIndex:i]];
+		}
+		
+		//TODO: This code is to be ported into the global controller.
+		//[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60.0)];
+		//	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+		if ([objects count] > 0)
+			self.tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
 	}
-	
-	//TODO: This code is to be ported into the global controller.
-	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60.0)];
-	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
-	tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+	else {
+		self = nil;
+	}
+	return self;
+
+}
+
+- (void)dealloc {
+	//TODO release world & invalidate timer
+	if ([tickTimer isValid])
+		[tickTimer invalidate];
+	[tickTimer release];
+	[super dealloc];
 }
 
 @end

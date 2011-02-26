@@ -12,6 +12,7 @@
 #import <GameWolf.h>
 #import <GamePig.h>
 #import <GameBlock.h>
+#import <GameBreath.h>
 #import <GameObjectFoundry.h>
 #import <PhysicsWorldController.h>
 #import <HPSavedGames.h>
@@ -27,6 +28,7 @@
 	
 	NSMutableArray* pObjects;
 	NSMutableArray* objects;
+	NSMutableArray* wObjects;
 	HPSavedGames* table;
 	UIPopoverController* pop;
 }
@@ -35,6 +37,7 @@
 @property (retain) UIView* palette;
 @property (retain) NSMutableArray* objects;
 @property (retain) NSMutableArray* pObjects;
+@property (retain) NSMutableArray* wObjects;
 @property (retain) PhysicsWorldController* phy;
 @property (retain) UIButton* load;
 @property (retain) UIButton* save;
@@ -42,8 +45,6 @@
 @property int objCounter;
 
 - (void)initializeViews;
-
-
 
 - (void)addToGameArea:(GameObject*)o;
 - (void)removeFromGameArea:(GameObject*)o;

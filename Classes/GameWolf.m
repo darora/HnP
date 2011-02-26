@@ -74,7 +74,7 @@
 - (void)animate {
 	[[[self view] layer] removeAllAnimations];		
 	[[[self view] layer] removeAnimationForKey:@"contents"];
-	NSArray* imgs = [self splitImage:[[UIImage imageNamed:@"wolfs.png"] CGImage]];
+	NSArray* imgs = [GameObject splitImage:[[UIImage imageNamed:@"wolfs.png"] CGImage] xSplits:5 ySplits:3];
 	//[self.view setAnimationImages:imgs];
 	//		[self.view setAnimationDuration:5.0];
 	//		[self.view startAnimating];
@@ -104,31 +104,6 @@
 	if (tapGesture.state == UIGestureRecognizerStateEnded) {
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"wolfWasTapped" object:self]];
 	}
-}
-
-- (NSMutableArray*)splitImage:(CGImageRef)img
-{	
-    CGSize imageSize = CGSizeMake(CGImageGetWidth(img), CGImageGetHeight(img));
-	
-	NSMutableArray *layers = [NSMutableArray arrayWithCapacity:25];
-	
-	for(int x = 0;x < 5;x++) {
-		for(int y = 0;y < 3;y++) {
-			CGRect frame = CGRectMake((imageSize.width / 5) * x,
-									  (imageSize.height / 3) * y,
-									  (imageSize.width / 5),
-									  (imageSize.height / 3));
-			
-			CALayer *layer = [CALayer layer];
-			layer.frame = frame;
-			CGImageRef subimage = CGImageCreateWithImageInRect(img, frame);
-			//layer.contents = (id)subimage;
-			//CFRelease(subimage);
-			//UIImage* tmp = [UIImage imageWithCGImage:subimage];
-			[layers addObject:(id)subimage];
-		}
-    }
-    return layers; 
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {

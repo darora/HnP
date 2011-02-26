@@ -19,6 +19,7 @@
 @synthesize objCounter;
 @synthesize objects;
 @synthesize pObjects;
+@synthesize wObjects;
 @synthesize phy;
 @synthesize save;
 @synthesize load;
@@ -242,9 +243,63 @@
 - (void)handleSingleTap:(NSNotification*)n {
 	GameBlock* o = [n object];
 	//Breath for wolf
-	
-	
+	if ([o class] == [GameWolf class]) {
+		GameWolf* wolf = (GameWolf*)o;
+		
+		if ([wObjects count] > 0) {
+			while ([wObjects count] > 0) {
+				[[wObjects objectAtIndex:0] removeFromSuperview];
+				[wObjects removeObjectAtIndex:0];
+			}
+			return;
+		}
+		self.wObjects = [NSMutableArray arrayWithCapacity:4];
+		UIImage* dir = [UIImage imageNamed:@"direction-degree.png"];
+		UIImageView* prj = [[UIImageView alloc] initWithImage:dir];
+		CGPoint cen = wolf.view.center;//Don't care about scaling
+		prj.frame = CGRectMake((cen.x+wolf.view.frame.size.width/3), (cen.y-wolf.view.frame.size.height/2-272/2), 155, 272);
+		//prj.layer.anchorPoint = CGPointMake(0, 0.5);
+		prj.transform = CGAffineTransformRotate(CGAffineTransformIdentity, wolf.angle);
+		[gameArea addSubview:prj];
+		[wObjects addObject:prj];
+		
+		//Arrow
+		dir = [UIImage imageNamed:@"direction-arrow.png"];
+		UIImageView* arr = [[UIImageView alloc] initWithImage:dir];
+		cen = wolf.view.center;//Don't care about scaling
+		arr.frame = CGRectMake(prj.center.x-74, prj.center.y-430/2, 74, 430);
+		//arr.layer.anchorPoint = CGPointMake(0.5, 1);
+		arr.transform = CGAffineTransformRotate(CGAffineTransformIdentity, d2r(90));
+		[gameArea addSubview:arr];
+		[wObjects addObject:arr];
+		arr.userInteractionEnabled = YES;
+		UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(translateAim:)];
+		[arr addGestureRecognizer:panGestureRecognizer];
+		[panGestureRecognizer release];
+	}	
 }
+
+
+- (void)translateAim:(UIGestureRecognizer *)gesture {
+	// MODIFIES: object model (coordinates)
+	// REQUIRES: game in designer mode
+	// EFFECTS: the user drags around the object with one finger
+	//          if the object is in the palette, it will be moved in the game area & scaled up
+	UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gesture;
+	if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
+		//UIView *view = panGesture.view;
+		CGPoint translation = [panGesture translationInView:panGesture.view];
+		double angle = atan2(translation.y, translation.x);
+		NSLog(@"%lf", angle);
+		panGesture.view.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle+d2r(90));
+		[panGesture setTranslation:CGPointZero inView:panGesture.view];
+		
+	}
+	if (panGesture.state == UIGestureRecognizerStateEnded) {
+		[panGesture setTranslation:CGPointZero inView:panGesture.view];
+	}
+}
+
 
 - (void)handlePaletteReturn:(NSNotification*)n {
 	GameObject* o = [n object];
@@ -368,7 +423,7 @@
 			GameWolf* wolf = [[GameWolf alloc] initWithFrame:wolfDefault Angle:d2r(0) Number:objCounter++];
 			[pObjects addObject:wolf];
 			[palette addSubview:wolf.view];
-		}		
+		}
 	}
 	[data release];
     [pop dismissPopoverAnimated:YES];
@@ -377,16 +432,22 @@
 }
 
 - (void)resetButtonPressed {
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+	}
 	[self resetScreen];
 }
 
 - (void)startButtonPressed {
-	
+	for (int i=0; i < [objects count]; i++) {
+		[[[objects objectAtIndex:i] view] setUserInteractionEnabled:NO];
+	}
+	for (int i=0; i < [pObjects count]; i++) {
+		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
+	}
+	self.phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
 }
-
-- (void)setColorButtonTapped {
-}
-
 
 
 

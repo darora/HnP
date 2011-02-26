@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "GameObjectDelegate.h"
 
 #define d2r(x) (M_PI * x / 180.0)
@@ -41,6 +42,7 @@
 - (void)doubleTap:(UIGestureRecognizer *)gesture;
 - (void)translate:(UIGestureRecognizer *)gesture;
 
++ (NSMutableArray*)splitImage:(CGImageRef)img xSplits:(int)x ySplits:(int)y;
 
 - (void)encodeWithCoder:(NSCoder *)encoder;
 - (id)initWithCoder:(NSCoder *)decoder;

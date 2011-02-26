@@ -13,6 +13,6 @@ typedef enum { GamePig, GameBlock, GameWolf } GameObjectType;
 
 }
 
--(CGPoint*)getVerticesForN:(int)n view:(UIView*)v;
++(CGPoint*)getVerticesForN:(int)n view:(UIView*)v;
 
 @end
