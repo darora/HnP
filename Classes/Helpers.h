@@ -17,7 +17,7 @@ class CListener : public b2ContactListener
 
 {
 public:
-	void BeginContact(b2Contact* contact);
+	//void BeginContact(b2Contact* contact);
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void Reset();
 private:

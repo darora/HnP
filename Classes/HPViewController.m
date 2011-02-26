@@ -333,7 +333,7 @@
 		[pObjects removeObjectAtIndex:0];
 	}
 	while ([wObjects count] > 0) {
-		if ([[wObjects objectAtIndex:0] class] == [UILabel class])
+		if ([[wObjects objectAtIndex:0] isKindOfClass:[UIView class]])
 			[[wObjects objectAtIndex:0] removeFromSuperview];
 		else {
 			GameObject* o = [wObjects objectAtIndex:0];
@@ -455,12 +455,22 @@
 }
 
 - (void)startButtonPressed {
+	GameWolf* wolf;
 	for (int i=0; i < [objects count]; i++) {
-		[[[objects objectAtIndex:i] view] setUserInteractionEnabled:NO];
+		GameObject* o = [objects objectAtIndex:i];
+		[[o view] setUserInteractionEnabled:NO];
+		if ([o class] == [GameWolf class])
+			wolf = (GameWolf*)o;
 	}
 	for (int i=0; i < [pObjects count]; i++) {
 		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
 	}
+	//Add gameBreath
+	
+	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
+												Angle:0 Number:objCounter++ Velocity:50 trajectoryAngle:d2r(50)];
+	[self addToGameArea:b];
+	[wolf animate];
 	phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
 }
 
@@ -470,7 +480,7 @@
 	GamePig* pig = [n object];//(GamePig*)tmp->GetUserData();
 	[self removeFromGameArea:pig];
 	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 800, 500)];
-	label.text = @"The little piggy is dead! :D Wolf wins";
+	label.text = @"The little piggy is dead! :D\n Wolf wins";
 	label.textColor = [UIColor redColor];
 	label.shadowColor = [UIColor yellowColor];
 	label.backgroundColor = [UIColor clearColor];

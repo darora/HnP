@@ -75,25 +75,27 @@
 	[[[self view] layer] removeAllAnimations];		
 	[[[self view] layer] removeAnimationForKey:@"contents"];
 	NSArray* imgs = [GameObject splitImage:[[UIImage imageNamed:@"wolfs.png"] CGImage] xSplits:5 ySplits:3];
-	//[self.view setAnimationImages:imgs];
-	//		[self.view setAnimationDuration:5.0];
-	//		[self.view startAnimating];
+	[self.view setAnimationImages:imgs];
+	[self.view setAnimationDuration:1.5];
+	[self.view setAnimationRepeatCount:1];
+	[self.view startAnimating];
 	//		[imgs retain];
 	//NSMutableArray* times = [NSMutableArray arrayWithCapacity:25];
 //	for (int i=0; i < 25; i++) {
 //		[times addObject:[NSNumber numberWithFloat:1/25*i]];
 //	}
-	CALayer* image = [[CALayer layer] retain];
-	image.frame = wolfDefault;
-	image.contents = (id)[[UIImage imageNamed:@"wolf-cropped.png"] CGImage];
-	CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-	//		animation.calculationMode = kCAAnimationDiscrete;
-	animation.duration = 100/25;
-	animation.values = imgs;
-	//		animation.keyTimes = times;
-	[image addAnimation:animation forKey:@"contents"];
-	self.view = [[UIImageView alloc] initWithFrame:wolfDefault];
-	[self.view.layer addSublayer:image];
+	//CALayer* image = [[CALayer layer] retain];
+//	image.frame = CGRectMake(0, 0, self.size.width, self.size.height);
+//	image.contents = (id)[[UIImage imageNamed:@"wolf-cropped.png"] CGImage];
+//	CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+//	//		animation.calculationMode = kCAAnimationDiscrete;
+//	animation.duration = 100/25;
+//	animation.values = imgs;
+//	//		animation.keyTimes = times;
+//	[image addAnimation:animation forKey:@"contents"];
+//	self.view = [[UIImageView alloc] initWithFrame:CGRectMake(self.center.x-self.size.width/2, self.center.y-self.size.height/2, self.size.width, self.size.height)];
+//	[self updateView];
+//	[self.view.layer addSublayer:image];
 }
 
 - (void)tap:(UIGestureRecognizer *)gesture {

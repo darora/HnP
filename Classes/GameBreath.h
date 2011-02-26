@@ -10,7 +10,13 @@
 #import <GameObject.h>
 
 @interface GameBreath : GameObject {
-
+	CGFloat velocity;
+	CGFloat trajAngle;
 }
+
+@property CGFloat velocity;
+@property CGFloat trajAngle;
+
+- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Velocity:(CGFloat)v trajectoryAngle:(CGFloat)ta;
 
 @end

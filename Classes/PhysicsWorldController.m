@@ -22,7 +22,7 @@
 	CGSize screenSize = CGSizeMake(DEF_WIDTH, DEF_HEIGHT);
 	
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -9.81f);
+	gravity.Set(0.0f, -18.62f);
 	
 	bool doSleep = false;
 	
@@ -119,6 +119,8 @@
 	fixtureDef.density = 15.0f;
 	fixtureDef.friction = 0.3f;
 	fixtureDef.restitution = 0.35f; // 0 is a lead ball, 1 is a super bouncy ball
+	if ([object class] == [GameBreath class])
+		body->SetLinearVelocity(b2Vec2(40,10));
 	body->CreateFixture(&fixtureDef);
 	createBodyHelper(body, physicalView);
 	

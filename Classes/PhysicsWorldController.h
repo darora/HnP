@@ -10,6 +10,7 @@
 #import "Box2D/Box2D.h"
 #import <QuartzCore/QuartzCore.h>
 #import <GameObject.h>
+#import <GameBreath.h>
 #import "Helpers.h"
 
 #define PTM_RATIO 10	//Pixel to meter ratio for Box2D

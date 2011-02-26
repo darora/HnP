@@ -197,22 +197,23 @@
 {	
     CGSize imageSize = CGSizeMake(CGImageGetWidth(img), CGImageGetHeight(img));
 	
-	NSMutableArray *layers = [NSMutableArray arrayWithCapacity:25];
+	NSMutableArray *layers = [NSMutableArray arrayWithCapacity:y*x];
 	
-	for(int x = 0;x < 5;x++) {
-		for(int y = 0;y < 3;y++) {
-			CGRect frame = CGRectMake((imageSize.width / 5) * x,
-									  (imageSize.height / 3) * y,
-									  (imageSize.width / 5),
-									  (imageSize.height / 3));
+	for(int i = 0;i < y;i++) {
+		for(int j = 0;j < x;j++) {
+			CGRect frame = CGRectMake((imageSize.width / x) * j,
+									  (imageSize.height / y) * i,
+									  (imageSize.width / x),
+									  (imageSize.height / y));
 			
 			CALayer *layer = [CALayer layer];
 			layer.frame = frame;
 			CGImageRef subimage = CGImageCreateWithImageInRect(img, frame);
 			//layer.contents = (id)subimage;
 			//CFRelease(subimage);
-			//UIImage* tmp = [UIImage imageWithCGImage:subimage];
-			[layers addObject:(id)subimage];
+			UIImage* tmp = [UIImage imageWithCGImage:subimage];
+			[layers addObject:tmp];
+			//[layers addObject:(id)subimage];
 		}
     }
     return layers; 

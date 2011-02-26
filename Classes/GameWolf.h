@@ -16,4 +16,6 @@
 @property int lives;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
+- (void)animate;
+
 @end
