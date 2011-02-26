@@ -15,7 +15,7 @@
 @implementation PhysicsWorldController
 
 @synthesize tickTimer;
-
+@synthesize cl;
 
 -(void)createPhysicsWorld
 {
@@ -27,7 +27,9 @@
 	bool doSleep = false;
 	
 	world = new b2World(gravity, doSleep);
-	
+	cl = new CListener();
+	cl->Reset();
+	world->SetContactListener(cl);
 	world->SetContinuousPhysics(true);
 	
 	// Define the ground body.
@@ -68,6 +70,7 @@
 	
 	bodyDef.position.Set(p.x/PTM_RATIO, (DEF_HEIGHT - p.y)/PTM_RATIO);
 	bodyDef.userData = object;
+	bodyDef.angle = - object.angle;
 	
 	// Tell the physics world to create the body
 	b2Body *body = world->CreateBody(&bodyDef);
@@ -111,12 +114,12 @@
 			CGPoint boxDimensions = CGPointMake(object.scale*physicalView.bounds.size.width/PTM_RATIO/2.0,object.scale*physicalView.bounds.size.height/PTM_RATIO/2.0);
 			dynamicBox.SetAsBox(boxDimensions.x, boxDimensions.y);
 		}
-		b2FixtureDef fixtureDef;
-		fixtureDef.shape = &dynamicBox;
-		fixtureDef.density = 5.0f;
-		fixtureDef.friction = 0.3f;
-		fixtureDef.restitution = 0.25f; // 0 is a lead ball, 1 is a super bouncy ball
-		body->CreateFixture(&fixtureDef);
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 15.0f;
+	fixtureDef.friction = 0.3f;
+	fixtureDef.restitution = 0.35f; // 0 is a lead ball, 1 is a super bouncy ball
+	body->CreateFixture(&fixtureDef);
 	createBodyHelper(body, physicalView);
 	
 	

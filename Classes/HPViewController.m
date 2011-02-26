@@ -52,6 +52,7 @@
 	objCounter = 0;
 	self.objects = [NSMutableArray arrayWithCapacity:5];
 	self.pObjects = [NSMutableArray arrayWithCapacity:3];
+	self.wObjects = [NSMutableArray arrayWithCapacity:4];
 	
 	[self initializeViews];
 	[self initializePalette];
@@ -205,6 +206,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDoubleTap:) name:@"objectDidGetDoubleTapped" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaletteReturn:) name:@"restoreToPalette" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileSelected:) name:@"fileNameChosen" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePigCollision:) name:@"pigCollided" object:nil];
 }
 
 - (void)handleTranslation:(NSNotification*)n {
@@ -253,7 +255,6 @@
 			}
 			return;
 		}
-		self.wObjects = [NSMutableArray arrayWithCapacity:4];
 		UIImage* dir = [UIImage imageNamed:@"direction-degree.png"];
 		UIImageView* prj = [[UIImageView alloc] initWithImage:dir];
 		CGPoint cen = wolf.view.center;//Don't care about scaling
@@ -331,6 +332,20 @@
 		[o.view removeFromSuperview];
 		[pObjects removeObjectAtIndex:0];
 	}
+	while ([wObjects count] > 0) {
+		if ([[wObjects objectAtIndex:0] class] == [UILabel class])
+			[[wObjects objectAtIndex:0] removeFromSuperview];
+		else {
+			GameObject* o = [wObjects objectAtIndex:0];
+			[o.view removeFromSuperview];
+		}
+		[wObjects removeObjectAtIndex:0];
+	}//TODO FIX reset crash
+	//for (UIView* e in gameArea.subviews) {
+//		if (e != gameArea)
+//			[e removeFromSuperview];
+//	}
+	
 	[self initializePalette];
 }
 
@@ -446,9 +461,26 @@
 	for (int i=0; i < [pObjects count]; i++) {
 		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
 	}
-	self.phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
+	phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
 }
 
+- (void)handlePigCollision:(NSNotification*)n {
+	//Hurray
+	//	b2Body* tmp = (b2Body*);
+	GamePig* pig = [n object];//(GamePig*)tmp->GetUserData();
+	[self removeFromGameArea:pig];
+	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 800, 500)];
+	label.text = @"The little piggy is dead! :D Wolf wins";
+	label.textColor = [UIColor redColor];
+	label.shadowColor = [UIColor yellowColor];
+	label.backgroundColor = [UIColor clearColor];
+	label.shadowOffset = CGSizeMake(1,1);
+	label.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size: 36.0];
+	label.textAlignment = UITextAlignmentCenter;
+	[gameArea addSubview:label];
+	[wObjects addObject:label];
+	//Reset & load next level
+}
 
 
 

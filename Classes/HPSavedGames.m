@@ -47,7 +47,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
     self.clearsSelectionOnViewWillAppear = NO;
-    self.contentSizeForViewInPopover = CGSizeMake(150.0, 400.0);
+    self.contentSizeForViewInPopover = CGSizeMake(250.0, 400.0);
 	
 	NSString *bundleRoot = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	self.games = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRoot error:nil];	

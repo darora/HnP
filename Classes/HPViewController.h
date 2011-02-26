@@ -38,7 +38,7 @@
 @property (retain) NSMutableArray* objects;
 @property (retain) NSMutableArray* pObjects;
 @property (retain) NSMutableArray* wObjects;
-@property (retain) PhysicsWorldController* phy;
+@property (assign) PhysicsWorldController* phy;
 @property (retain) UIButton* load;
 @property (retain) UIButton* save;
 @property (retain) UITextField * nameField;
@@ -55,6 +55,7 @@
 - (void)handleDoubleTap:(NSNotification*)n;
 - (void)handleSingleTap:(NSNotification*)n;
 - (void)handlePaletteReturn:(NSNotification*)n;
+- (void)handlePigCollision:(NSNotification*)n;
 
 - (void)resetScreen;
 

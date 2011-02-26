@@ -16,9 +16,11 @@
 
 @interface PhysicsWorldController : NSObject {
 	b2World* world;
+	CListener* cl;
 	NSTimer *tickTimer;
 }
 
+@property (assign) CListener* cl;
 @property (retain) NSTimer* tickTimer;
 
 -(id)initWithObjectsArray:(NSMutableArray*)objects;
