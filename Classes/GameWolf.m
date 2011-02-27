@@ -75,10 +75,11 @@
 	[[[self view] layer] removeAllAnimations];		
 	[[[self view] layer] removeAnimationForKey:@"contents"];
 	NSArray* imgs = [GameObject splitImage:[[UIImage imageNamed:@"wolfs.png"] CGImage] xSplits:5 ySplits:3];
-	[self.view setAnimationImages:imgs];
-	[self.view setAnimationDuration:1.5];
-	[self.view setAnimationRepeatCount:1];
-	[self.view startAnimating];
+	UIImageView* tmp = (UIImageView*)self.view;
+	[tmp setAnimationImages:imgs];
+	[tmp setAnimationDuration:1.5];
+	[tmp setAnimationRepeatCount:1];
+	[tmp startAnimating];
 	//		[imgs retain];
 	//NSMutableArray* times = [NSMutableArray arrayWithCapacity:25];
 //	for (int i=0; i < 25; i++) {

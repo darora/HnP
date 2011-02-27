@@ -75,40 +75,6 @@
 	// Tell the physics world to create the body
 	b2Body *body = world->CreateBody(&bodyDef);
 	b2PolygonShape dynamicBox;
-//	if ([physicalView class] == [CircleView class]) {
-//		CircleView* c = (CircleView*)physicalView;
-//		b2CircleShape dynamicBox;
-//		//dynamicBox.m_p = b2Vec2(c.center.x/PTM_RATIO, (1024.0-c.center.y)/PTM_RATIO);
-//		dynamicBox.m_radius = c.radius/PTM_RATIO;
-//		// Define the dynamic body fixture.
-//		b2FixtureDef fixtureDef;
-//		fixtureDef.shape = &dynamicBox;
-//		fixtureDef.density = 3.0f;
-//		fixtureDef.friction = 0.3f;
-//		fixtureDef.restitution = 0.6f; // 0 is a lead ball, 1 is a super bouncy ball
-//		body->CreateFixture(&fixtureDef);
-//	}
-//	else {
-//		b2PolygonShape dynamicBox;
-//		
-//		if ([physicalView class] == [PolygonView class]) {
-//			PolygonView* tmp = (PolygonView*)physicalView;
-//			int32 n = (int32)[tmp n];
-//			float32 width = tmp.frame.size.width/2,
-//			height = tmp.frame.size.height/2;
-//			
-//			b2Vec2* vertices = (b2Vec2*)malloc(n*sizeof(b2Vec2));
-//			CGPoint* cv = [tmp vertices];
-//			for (int32 i = 0; i<n; i++) {
-//				b2Vec2 tmp = b2Vec2();
-//				tmp.x = ((float32)cv[i].x - width)/PTM_RATIO;
-//				tmp.y = ((float32)cv[i].y - height)/PTM_RATIO;
-//				vertices[i] = tmp;
-//			}
-//			dynamicBox.Set(vertices, n);
-//			free(vertices);
-//		}
-//		else
 		{
 			//For UIViews added from Interface Builder
 			CGPoint boxDimensions = CGPointMake(object.scale*physicalView.bounds.size.width/PTM_RATIO/2.0,object.scale*physicalView.bounds.size.height/PTM_RATIO/2.0);
@@ -139,17 +105,6 @@
 	{
 		if (b->GetUserData() != NULL)
 		{
-			//if (gravitySource.x != -1) {
-//				//NSLog(@"Hey gravity's not zero: %lf, %lf", gravitySource.x, gravitySource.y);
-//				b2Vec2 pos = b->GetPosition();
-//				b2Vec2 loc = b2Vec2(gravitySource.x/PTM_RATIO, (1024-gravitySource.y)/PTM_RATIO);
-//				b2Vec2 d = loc - pos;
-//				float force = 10.0f * d.LengthSquared();
-//				d.Normalize();
-//				b2Vec2 F = force * d;
-//				b->ApplyForce(F, pos);
-//			}	
-//			
 			//UIView *oneView = (UIView *)b->GetUserData();
 			GameObject* o = (GameObject*)b->GetUserData();
 			// y Position subtracted because of flipped coordinate system
@@ -164,6 +119,22 @@
 			//oneView.transform = transform;
 		}
 	}
+}
+
+-(void)removeBody:(GameObject*)body {
+	for (b2Body* b = world->GetBodyList(); b; b=b->GetNext()) {
+		if (b->GetUserData() != NULL) {
+			GameObject* o = (GameObject*)b->GetUserData();
+			if (o.number == body.number)
+			{
+				b2Body* tmp = b->GetNext();
+				world->DestroyBody(b);
+				b = tmp;
+				NSLog(@"Body being removed");
+				break;
+			}
+		}
+	}			
 }
 
 -(id)initWithObjectsArray:(NSMutableArray*)objects {

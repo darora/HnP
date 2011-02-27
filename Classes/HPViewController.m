@@ -76,6 +76,15 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	[self removeEverything];
+	for (UIView* v in gameArea.subviews) {
+		[v removeFromSuperview];
+	}
+	for (UIView* v in palette.subviews) {
+		[v removeFromSuperview];
+	}
+	[gameArea removeFromSuperview];
+	[palette removeFromSuperview];	
 }
 
 
@@ -110,6 +119,7 @@
 			[tmp.view removeFromSuperview];
 			[self.objects removeObjectAtIndex:i];
 			[tmp release];
+			tmp = nil;
 			return;
 		}
 	}
@@ -207,6 +217,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaletteReturn:) name:@"restoreToPalette" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileSelected:) name:@"fileNameChosen" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePigCollision:) name:@"pigCollided" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBreathExpired:) name:@"removeBreath" object:nil];
 }
 
 - (void)handleTranslation:(NSNotification*)n {
@@ -217,11 +228,12 @@
 		o.center = CGPointMake(o.center.x , o.center.y - PALETTE_HEIGHT);
 		o.scale = 2.0;
 		[o updateView];
+		[self.pObjects removeObjectAtIndex:i];
 		[self addToGameArea:o];
 		if ([o class] == [GameBlock class]) {
 			GameBlock* blk = [[GameBlock alloc] initWithFrame:blockDefault Angle:d2r(0) Number:objCounter++];
 			[palette addSubview:blk.view];
-			[pObjects replaceObjectAtIndex:i withObject:blk];
+			[pObjects addObject:blk];
 		}
 	}	
 }
@@ -288,7 +300,6 @@
 	//          if the object is in the palette, it will be moved in the game area & scaled up
 	UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gesture;
 	if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
-		//UIView *view = panGesture.view;
 		CGPoint translation = [panGesture translationInView:panGesture.view];
 		double angle = atan2(translation.y, translation.x);
 		NSLog(@"%lf", angle);
@@ -323,43 +334,71 @@
 	[o updateView];
 }
 
-- (void)resetScreen {
-	while ([objects count] > 0) {
-		[self removeFromGameArea:[objects objectAtIndex:0]];
-	}
-	while ([pObjects count] > 0) {
-		GameObject* o = [pObjects objectAtIndex:0];
-		[o.view removeFromSuperview];
-		[pObjects removeObjectAtIndex:0];
-	}
-	while ([wObjects count] > 0) {
-		if ([[wObjects objectAtIndex:0] isKindOfClass:[UIView class]])
-			[[wObjects objectAtIndex:0] removeFromSuperview];
-		else {
-			GameObject* o = [wObjects objectAtIndex:0];
-			[o.view removeFromSuperview];
-		}
-		[wObjects removeObjectAtIndex:0];
-	}//TODO FIX reset crash
-	//for (UIView* e in gameArea.subviews) {
-//		if (e != gameArea)
-//			[e removeFromSuperview];
-//	}
+- (void)handleBreathExpired:(NSNotification*)n {
+	GameBreath* tmp = (GameBreath*)[n object];
+	[self.phy removeBody:tmp];
+	[self removeFromGameArea:tmp];
 	
+	//STOP GAME
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+		self.phy = nil;
+	}
+	for (int i=0; i<[objects count]; i++) {
+		GameObject* tmp = [objects objectAtIndex:i];
+		if ([tmp class] == [GameWolf class]) {
+			tmp.view.userInteractionEnabled = YES;
+			tmp.view.multipleTouchEnabled = YES;
+		}
+	}
+	
+}
+
+- (void)resetScreen {
+	[self removeEverything];
 	[self initializePalette];
 }
 
+- (void)removeEverything {
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+		self.phy = nil;
+	}	
+	while ([self.objects count] > 0) {
+		GameObject* tmp = [self.objects objectAtIndex:0];
+		if ([tmp isKindOfClass:[UIView class]]) {
+			UIView* v = (UIView*)tmp;
+			[v removeFromSuperview];
+		}
+		else [[tmp view] removeFromSuperview];
+		[self.objects removeObjectAtIndex:0];
+		[tmp release];
+	}
+	while ([self.pObjects count] > 0) {
+		GameObject* tmp = [self.pObjects objectAtIndex:0];
+		if ([tmp isKindOfClass:[UIView class]]) {
+			UIView* v = (UIView*)tmp;
+			[v removeFromSuperview];
+		}
+		else [[tmp view] removeFromSuperview];
+		[self.pObjects removeObjectAtIndex:0];
+		[tmp release];
+	}
+	while ([self.wObjects count] > 0) {
+		GameObject* tmp = [self.wObjects objectAtIndex:0];
+		if ([tmp isKindOfClass:[UIView class]]) {
+			UIView* v = (UIView*)tmp;
+			[v removeFromSuperview];
+		}
+		else [[tmp view] removeFromSuperview];
+		[self.wObjects removeObjectAtIndex:0];
+		[tmp release];
+	}
+}
+
 - (void)saveButtonPressed {
-	//UIViewController* tmp = [[UIViewController alloc] init
-//	if (_colorPicker == nil) {
-//        self.colorPicker = [[[ColorPickerController alloc] 
-//							 initWithStyle:UITableViewStylePlain] autorelease];
-//        _colorPicker.delegate = self;
-//        self.colorPickerPopover = [[[UIPopoverController alloc]
-//									initWithContentViewController:_colorPicker] autorelease];
-//    }
-//    [self.colorPickerPopover presentPopoverFromBarButtonItem:sender
-//									permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	UIAlertView* dialog = [[UIAlertView alloc] init];
 	[dialog setDelegate:self];
 	[dialog setTitle:@"Enter File Name"];
@@ -408,12 +447,7 @@
 	NSData *data = [NSData dataWithContentsOfFile:plistPath];
 	NSKeyedUnarchiver *ua = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
 	if (data != NULL) {
-		[self resetScreen];
-		while ([pObjects count] > 0) {
-			GameObject* o = [pObjects objectAtIndex:0];
-			[o.view removeFromSuperview];
-			[pObjects removeObjectAtIndex:0];
-		}
+		[self removeEverything];
 		BOOL bwolf = YES, bpig = YES;
 		self.objects = [ua decodeObject];
 		for (int i=0; i < [self.objects count]; i++) {
@@ -447,14 +481,14 @@
 }
 
 - (void)resetButtonPressed {
-	if (self.phy) {
-		[self.phy.tickTimer invalidate];
-		[self.phy release];
-	}
 	[self resetScreen];
 }
 
 - (void)startButtonPressed {
+	//If game is already running, ignore
+	if (self.phy)
+		return;
+	
 	GameWolf* wolf;
 	for (int i=0; i < [objects count]; i++) {
 		GameObject* o = [objects objectAtIndex:i];
@@ -468,16 +502,20 @@
 	//Add gameBreath
 	
 	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
-												Angle:0 Number:objCounter++ Velocity:50 trajectoryAngle:d2r(50)];
+												Angle:0 Number:objCounter++ Velocity:CGPointMake(50, 15) trajectoryAngle:d2r(50)];
 	[self addToGameArea:b];
+	wolf.lives--;
 	[wolf animate];
 	phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
 }
 
 - (void)handlePigCollision:(NSNotification*)n {
-	//Hurray
-	//	b2Body* tmp = (b2Body*);
-	GamePig* pig = [n object];//(GamePig*)tmp->GetUserData();
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+		self.phy = nil;
+	}
+	GamePig* pig = [n object];
 	[self removeFromGameArea:pig];
 	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 800, 500)];
 	label.text = @"The little piggy is dead! :D\n Wolf wins";
@@ -489,7 +527,7 @@
 	label.textAlignment = UITextAlignmentCenter;
 	[gameArea addSubview:label];
 	[wObjects addObject:label];
-	//Reset & load next level
+	//TODO: Reset & load next level
 }
 
 

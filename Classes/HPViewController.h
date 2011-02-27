@@ -56,8 +56,10 @@
 - (void)handleSingleTap:(NSNotification*)n;
 - (void)handlePaletteReturn:(NSNotification*)n;
 - (void)handlePigCollision:(NSNotification*)n;
+- (void)handleBreathExpired:(NSNotification*)n;
 
 - (void)resetScreen;
+- (void)removeEverything;
 
 - (void)saveButtonPressed;
 - (void)loadButtonPressed;

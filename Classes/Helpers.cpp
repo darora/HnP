@@ -44,11 +44,19 @@ void CListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 {
 	const b2Body* bodyA = contact->GetFixtureA()->GetBody();		
 	const b2Body* bodyB = contact->GetFixtureB()->GetBody();
+	if (bodyA->GetType() != b2_dynamicBody)
+		return;
+	if (bodyB->GetType() != b2_dynamicBody)
+		return;	
 	GameObject* o1 = (GameObject*)bodyA->GetUserData();
 	GameObject* o2 = (GameObject*)bodyB->GetUserData();
-	
+	if (!o1 || !o2) {
+		contact->SetEnabled(false);
+		return;
+	}
+		
 	if (([o2 class] == [GamePig class]) || ([o1 class] == [GamePig class])) {
-		b2WorldManifold worldManifold;		
+		b2WorldManifold worldManifold;
 		contact->GetWorldManifold(&worldManifold);		
 		b2PointState state1[2], state2[2];	
 		b2GetPointStates(state1, state2, oldManifold, contact->GetManifold());		
@@ -62,22 +70,22 @@ void CListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 			if (fabs(approachVelocity) > 30.0f)
 			{			
 				if ([o2 class] == [GamePig class]) {
-					if (bodyA->GetType() == b2_dynamicBody) {
+					//if (bodyA->GetType() == b2_dynamicBody) {
 						contact->SetEnabled(false);
 						if (sent == false) {
 							sent = true;
 							[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pigCollided" object:o2]];
 						}
-					}
+					//}
 				}
 				else if ([o1 class] == [GamePig class])
-					if (bodyB->GetType() == b2_dynamicBody) {
+					//if (bodyB->GetType() == b2_dynamicBody) {
 						contact->SetEnabled(false);
 						if (sent == false) {
 							sent = true;
 							[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pigCollided" object:o1]];
 						}
-					}
+					//}
 			}
 		}
 	}

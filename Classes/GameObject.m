@@ -209,8 +209,6 @@
 			CALayer *layer = [CALayer layer];
 			layer.frame = frame;
 			CGImageRef subimage = CGImageCreateWithImageInRect(img, frame);
-			//layer.contents = (id)subimage;
-			//CFRelease(subimage);
 			UIImage* tmp = [UIImage imageWithCGImage:subimage];
 			[layers addObject:tmp];
 			//[layers addObject:(id)subimage];
@@ -218,6 +216,4 @@
     }
     return layers; 
 }
-
-
 @end

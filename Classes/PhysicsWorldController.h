@@ -25,5 +25,9 @@
 @property (retain) NSTimer* tickTimer;
 
 -(id)initWithObjectsArray:(NSMutableArray*)objects;
+-(void)removeBody:(GameObject*)body;
+-(void)tick:(NSTimer *)timer;
+-(void)addPhysicalBodyForGameObject:(GameObject *)object;
+-(void)createPhysicsWorld;
 
 @end
