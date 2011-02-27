@@ -23,6 +23,7 @@
 @synthesize phy;
 @synthesize save;
 @synthesize load;
+@synthesize start;
 @synthesize nameField;
 
 /*
@@ -188,7 +189,7 @@
 	[tb addSubview:reset];
 	//[reset release];
 	
-	UIButton* start = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	self.start = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	start.frame = CGRectMake(470, 5, 80, 30);
 	[start setTitle:@"Start" forState:UIControlStateNormal];
 	[start addTarget:self action:@selector(startButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -217,6 +218,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileSelected:) name:@"fileNameChosen" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePigCollision:) name:@"pigCollided" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBreathExpired:) name:@"removeBreath" object:nil];
+	//TODO: Listener for wolfDidExpire
 }
 
 - (void)handleTranslation:(NSNotification*)n {
@@ -388,7 +390,6 @@
 
 - (void) alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
 	NSString* inputText = [nameField text];
-	NSLog(@"%@ %d", inputText, buttonIndex);
 	if (buttonIndex == 1) {
 		NSMutableData *data = [[NSMutableData alloc] init];
 		NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
@@ -457,8 +458,23 @@
 
 - (void)startButtonPressed {
 	//If game is already running, ignore
-	if (self.phy)
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+		self.phy = nil;
+		for (int i=0; i<[objects count]; i++) {
+			GameObject* tmp = [objects objectAtIndex:i];
+			if ([tmp class] == [GameWolf class]) {
+				tmp.view.userInteractionEnabled = YES;
+				tmp.view.multipleTouchEnabled = YES;
+			}
+			else if ([tmp class] == [GameBreath class]) {
+				[self removeFromGameArea:tmp];
+			}
+		}
+		[self.start setTitle:@"Start" forState:UIControlStateNormal];
 		return;
+	}
 	
 	GameWolf* wolf;
 	for (int i=0; i < [objects count]; i++) {
@@ -470,8 +486,14 @@
 	for (int i=0; i < [pObjects count]; i++) {
 		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
 	}
-	//Add gameBreath
-	
+	//Remove arrows
+	for (int i=0; i < [wObjects count]; i++) {
+		if ([[wObjects objectAtIndex:i] isKindOfClass:[GameArrow class]]) {
+			[[[wObjects objectAtIndex:i] arr] removeFromSuperview];
+			[[[wObjects objectAtIndex:i] dir] removeFromSuperview];
+			break;
+		}
+	}
 	
 	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
 												Angle:0 Number:objCounter++ Velocity:CGPointMake(50, 15) trajectoryAngle:d2r(50)];
@@ -479,6 +501,7 @@
 	wolf.lives--;
 	[wolf animate];
 	phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
+	[self.start setTitle:@"Stop" forState:UIControlStateNormal];
 }
 
 - (void)handlePigCollision:(NSNotification*)n {

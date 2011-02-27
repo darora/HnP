@@ -13,6 +13,12 @@
 
 @synthesize lives;
 
+- (void)setLives:(int)n {
+	lives = n;
+	if (lives <= 0)
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"wolfDidExpire" object:self]];
+}
+
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n {
 	if (self = [super initWithFrame:f Angle:a Number:n]) {
 		lives = 3;

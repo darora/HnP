@@ -22,7 +22,7 @@
 	CGSize screenSize = CGSizeMake(DEF_WIDTH, DEF_HEIGHT);
 	
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -18.62f);
+	gravity.Set(0.0f, -25.62f);
 	
 	bool doSleep = false;
 	

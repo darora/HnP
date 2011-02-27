@@ -24,7 +24,7 @@
 	int objCounter;
 	PhysicsWorldController* phy;
 	
-	UIButton *load, *save;
+	UIButton *load, *save, *start;
 	UITextField * nameField;
 	
 	NSMutableArray* pObjects;
@@ -42,6 +42,7 @@
 @property (assign) PhysicsWorldController* phy;
 @property (retain) UIButton* load;
 @property (retain) UIButton* save;
+@property (retain) UIButton* start;
 @property (retain) UITextField * nameField;
 @property int objCounter;
 
