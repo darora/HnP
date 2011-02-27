@@ -10,16 +10,16 @@
 #import <GameObject.h>
 
 @interface GameBreath : GameObject {
-	CGPoint velocity;
-	CGFloat trajAngle;
+	double velocity;
+	double trajAngle;
 	NSTimer* time;
 }
 
-@property CGPoint velocity;
-@property CGFloat trajAngle;
+@property double velocity;
+@property double trajAngle;
 @property (retain) NSTimer* time;
 
-- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Velocity:(CGPoint)v trajectoryAngle:(CGFloat)ta;
+- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Velocity:(double)v trajectoryAngle:(double)ta;
 - (void)removeSelf;
 
 @end

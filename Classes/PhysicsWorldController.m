@@ -85,8 +85,13 @@
 	fixtureDef.density = 15.0f;
 	fixtureDef.friction = 0.3f;
 	fixtureDef.restitution = 0.35f; // 0 is a lead ball, 1 is a super bouncy ball
-	if ([object class] == [GameBreath class])
-		body->SetLinearVelocity(b2Vec2(40,10));
+	if ([object class] == [GameBreath class]) {
+		GameBreath* tmp = (GameBreath*)object;
+		float32 x = tmp.velocity;
+		float32 y = tmp.trajAngle;
+		NSLog(@"%f, %f is linear velocity.", x, y);
+		body->SetLinearVelocity(b2Vec2(x,y));
+	}		
 	body->CreateFixture(&fixtureDef);
 	createBodyHelper(body, physicalView);
 	
@@ -130,7 +135,6 @@
 				b2Body* tmp = b->GetNext();
 				world->DestroyBody(b);
 				b = tmp;
-				NSLog(@"Body being removed");
 				break;
 			}
 		}

@@ -13,6 +13,8 @@
 
 @synthesize dir;
 @synthesize arr;
+@synthesize sca;
+@synthesize ang;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Wolf:(GameObject*)wolf {
 	if (self = [super initWithFrame:f Angle:a Number:n]) {
@@ -39,6 +41,8 @@
 //		[wObjects addObject:arr];
 		arr.userInteractionEnabled = YES;
 		
+		self.ang = 0;
+		self.sca = 430;
 		//TODO: A LOT
 		
 		
@@ -66,8 +70,7 @@
 	// REQUIRES: game in designer mode
 	// EFFECTS: the user drags around the object with one finger
 	//          if the object is in the palette, it will be moved in the game area & scaled up
-	static CGFloat ang = 0;
-	static CGFloat sca = 430;
+	
 	
 	UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gesture;
 	if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {

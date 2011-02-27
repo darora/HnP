@@ -317,6 +317,7 @@
 		[self.phy.tickTimer invalidate];
 		[self.phy release];
 		self.phy = nil;
+		[start setTitle:@"Start" forState:UIControlStateNormal];
 	}
 	for (int i=0; i<[objects count]; i++) {
 		GameObject* tmp = [objects objectAtIndex:i];
@@ -324,12 +325,17 @@
 			tmp.view.userInteractionEnabled = YES;
 			tmp.view.multipleTouchEnabled = YES;
 		}
+		else if ([tmp class] == [GameBreath class]) {
+			[[(GameBreath*)tmp time] invalidate];
+			[self removeFromGameArea:tmp];
+		}
 	}
 	
 }
 
 - (void)resetScreen {
 	[self removeEverything];
+	[start setTitle:@"Start" forState:UIControlStateNormal];
 	[self initializePalette];
 }
 
@@ -457,7 +463,7 @@
 }
 
 - (void)startButtonPressed {
-	//If game is already running, ignore
+	//If game is already running, stop physics
 	if (self.phy) {
 		[self.phy.tickTimer invalidate];
 		[self.phy release];
@@ -469,12 +475,15 @@
 				tmp.view.multipleTouchEnabled = YES;
 			}
 			else if ([tmp class] == [GameBreath class]) {
+				[[(GameBreath*)tmp time] invalidate];
 				[self removeFromGameArea:tmp];
 			}
 		}
 		[self.start setTitle:@"Start" forState:UIControlStateNormal];
 		return;
 	}
+	
+	//else start physics, add breath
 	
 	GameWolf* wolf;
 	for (int i=0; i < [objects count]; i++) {
@@ -487,8 +496,13 @@
 		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
 	}
 	//Remove arrows
+	double scale = 10.0, angle = 0.0;
 	for (int i=0; i < [wObjects count]; i++) {
 		if ([[wObjects objectAtIndex:i] isKindOfClass:[GameArrow class]]) {
+			GameArrow* tmp = [wObjects objectAtIndex:i];
+			scale = 1/[tmp sca];
+			angle = [tmp ang];
+			NSLog(@"%lf", scale);
 			[[[wObjects objectAtIndex:i] arr] removeFromSuperview];
 			[[[wObjects objectAtIndex:i] dir] removeFromSuperview];
 			break;
@@ -496,7 +510,7 @@
 	}
 	
 	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
-												Angle:0 Number:objCounter++ Velocity:CGPointMake(50, 15) trajectoryAngle:d2r(50)];
+												Angle:0 Number:objCounter++ Velocity:scale*20000 trajectoryAngle:-angle*50];
 	[self addToGameArea:b];
 	wolf.lives--;
 	[wolf animate];

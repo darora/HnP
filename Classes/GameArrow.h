@@ -12,10 +12,14 @@
 @interface GameArrow : GameObject {
 	UIImageView* dir;
 	UIImageView* arr;
+	double sca;
+	double ang;
 }
 
 @property (assign) UIImageView* dir;
 @property (assign) UIImageView* arr;
+@property double sca;
+@property double ang;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Wolf:(GameObject*)wolf;
 - (void)translateAim:(UIGestureRecognizer *)gesture;

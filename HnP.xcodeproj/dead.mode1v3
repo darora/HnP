@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -311,8 +313,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>0229E0B2131A7C0300440A58</string>
+										<string>0229E117131A863000440A58</string>
 										<key>history</key>
 										<array>
 											<string>027C44D913155863007D0C51</string>
@@ -362,26 +362,26 @@
 											<string>0248488E13191ECB00776018</string>
 											<string>024848A71319246500776018</string>
 											<string>024848BB13192CC600776018</string>
-											<string>0216BA84131A21F400390C76</string>
 											<string>0216BAF2131A2E3700390C76</string>
-											<string>0216BAF3131A2E3700390C76</string>
 											<string>0216BAF5131A2E3700390C76</string>
 											<string>0229DFD4131A568B00440A58</string>
 											<string>0229DFD6131A568B00440A58</string>
 											<string>0229DFD7131A568B00440A58</string>
 											<string>0229DFDA131A568B00440A58</string>
-											<string>0229E019131A600C00440A58</string>
 											<string>0229E02F131A60A000440A58</string>
 											<string>0229E03C131A616E00440A58</string>
 											<string>0229E03E131A616E00440A58</string>
 											<string>0229E03F131A616E00440A58</string>
 											<string>0229E040131A616E00440A58</string>
-											<string>0229E0A2131A7AF900440A58</string>
-											<string>0229E0A3131A7AF900440A58</string>
 											<string>0229E0A4131A7AF900440A58</string>
-											<string>0229E0A5131A7AF900440A58</string>
-											<string>0229E0A6131A7AF900440A58</string>
-											<string>0229E0A7131A7AF900440A58</string>
+											<string>0229E0D4131A7FB800440A58</string>
+											<string>0229E0D5131A7FB800440A58</string>
+											<string>0229E0D7131A7FB800440A58</string>
+											<string>0229E0D9131A7FB800440A58</string>
+											<string>0229E0DA131A7FB800440A58</string>
+											<string>0229E114131A863000440A58</string>
+											<string>0229E115131A863000440A58</string>
+											<string>0229E116131A863000440A58</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -579,10 +579,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>0229E118131A863000440A58</string>
 		<string>0229DFAD131A4C4F00440A58</string>
 		<string>0229DFAE131A4C4F00440A58</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>027C448113152521007D0C51</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/dead/Desktop/HP/HnP.xcodeproj</string>
 	</array>
@@ -610,7 +611,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GameWolf.m</string>
+								<string>PhysicsWorldController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -935,7 +936,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1039, 528}}</string>
 								<key>RubberWindowFrame</key>
-								<string>181 186 1039 569 0 0 1920 1058 </string>
+								<string>-1056 404 1039 569 -1366 312 1366 768 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -964,7 +965,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>181 186 1039 569 0 0 1920 1058 </string>
+			<string>-1056 404 1039 569 -1366 312 1366 768 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

@@ -15,7 +15,7 @@
 @synthesize trajAngle;
 @synthesize velocity;
 
-- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Velocity:(CGPoint)v trajectoryAngle:(CGFloat)ta {
+- (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n Velocity:(double)v trajectoryAngle:(double)ta {
 	
 	if (self = [super initWithFrame:f Angle:a Number:n]) {
 		self.velocity = v;
