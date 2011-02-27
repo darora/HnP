@@ -23,6 +23,7 @@
 	CGFloat scale;
 	CGPoint center;
 	int number;
+	GameObjectDelegate* deleg;
 }
 
 @property CGPoint center;

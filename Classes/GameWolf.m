@@ -69,6 +69,7 @@
 	[tapGestureRecognizer requireGestureRecognizerToFail:doubleTapGestureRecognizer];
 	[self.view addGestureRecognizer:tapGestureRecognizer];
 	[tapGestureRecognizer release];
+
 }
 
 - (void)animate {

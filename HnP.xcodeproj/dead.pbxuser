@@ -75,7 +75,7 @@
 		fRef = AF7BCDDF1314F191009C8DCB /* GameObject.m */;
 		name = "GameObject.m: 211";
 		rLen = 0;
-		rLoc = 8284;
+		rLoc = 8264;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 7012;
@@ -85,7 +85,7 @@
 		fRef = AF7BCDE21314F1A7009C8DCB /* GameWolf.m */;
 		name = "GameWolf.m: 78";
 		rLen = 0;
-		rLoc = 2794;
+		rLoc = 2795;
 		rType = 0;
 		vrLen = 2026;
 		vrLoc = 1904;
@@ -164,9 +164,9 @@
 	};
 	022694FC1318406F0044133E /* GameBreath.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1153, 572}}";
-			sepNavSelRange = "{578, 0}";
-			sepNavVisRange = "{190, 768}";
+			sepNavIntBoundsRect = "{{0, 0}, {1637, 878}}";
+			sepNavSelRange = "{1205, 0}";
+			sepNavVisRange = "{0, 1214}";
 		};
 	};
 	022694FE131841BF0044133E /* PBXTextBookmark */ = {
@@ -603,7 +603,7 @@
 	};
 	027C44B3131532A9007D0C51 /* GameObjectDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 589}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1637, 901}}";
 			sepNavSelRange = "{1058, 0}";
 			sepNavVisRange = "{0, 1059}";
 		};
@@ -657,10 +657,9 @@
 	};
 	28D7ACF70DDB3853001CB0EB /* HPViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{3001, 2666}\";\n            s = 0;\n        },\n                {\n            r = \"{7791, 285}\";\n            s = 0;\n        },\n                {\n            r = \"{10584, 582}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 17341}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1637, 5278}}";
-			sepNavSelRange = "{8491, 0}";
-			sepNavVisRange = "{10393, 2150}";
+			sepNavIntBoundsRect = "{{0, 0}, {1305, 7267}}";
+			sepNavSelRange = "{12044, 0}";
+			sepNavVisRange = "{11852, 685}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -892,17 +891,17 @@
 	};
 	AF7BCDDE1314F191009C8DCB /* GameObject.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 650}}";
-			sepNavSelRange = "{204, 0}";
-			sepNavVisRange = "{28, 1188}";
+			sepNavIntBoundsRect = "{{0, 0}, {1637, 878}}";
+			sepNavSelRange = "{255, 0}";
+			sepNavVisRange = "{0, 1244}";
 			sepNavWindowFrame = "{{-1366, 312}, {1531, 768}}";
 		};
 	};
 	AF7BCDDF1314F191009C8DCB /* GameObject.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 2860}}";
-			sepNavSelRange = "{8284, 0}";
-			sepNavVisRange = "{7012, 1430}";
+			sepNavIntBoundsRect = "{{0, 0}, {1637, 2704}}";
+			sepNavSelRange = "{8471, 0}";
+			sepNavVisRange = "{6367, 2112}";
 			sepNavWindowFrame = "{{-1343, 344}, {1366, 707}}";
 		};
 	};
@@ -915,9 +914,9 @@
 	};
 	AF7BCDE21314F1A7009C8DCB /* GameWolf.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 1638}}";
-			sepNavSelRange = "{2794, 0}";
-			sepNavVisRange = "{1904, 2026}";
+			sepNavIntBoundsRect = "{{0, 0}, {1637, 1651}}";
+			sepNavSelRange = "{2550, 0}";
+			sepNavVisRange = "{777, 3117}";
 			sepNavWindowFrame = "{{-1366, 312}, {1366, 768}}";
 		};
 	};
@@ -933,7 +932,7 @@
 			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{752, 1947}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4499}\";\n    s = 0;\n}";
 			sepNavIntBoundsRect = "{{0, 0}, {1637, 1417}}";
 			sepNavSelRange = "{1559, 0}";
-			sepNavVisRange = "{0, 1456}";
+			sepNavVisRange = "{781, 1772}";
 			sepNavWindowFrame = "{{0, 39}, {1366, 707}}";
 		};
 	};
@@ -946,9 +945,9 @@
 	};
 	AF7BCDE81314F1BC009C8DCB /* GamePig.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1153, 377}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1307, 632}}";
 			sepNavSelRange = "{354, 0}";
-			sepNavVisRange = "{0, 483}";
+			sepNavVisRange = "{0, 523}";
 		};
 	};
 	AF7BCDEA1314F1E4009C8DCB /* GameObjectFoundry.h */ = {

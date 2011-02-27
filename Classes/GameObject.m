@@ -60,7 +60,7 @@
 	[self.view setMultipleTouchEnabled:YES];
 	[self.view setContentMode:UIViewContentModeScaleAspectFit];
 	
-	GameObjectDelegate* deleg = [[GameObjectDelegate alloc] init];
+	deleg = [[GameObjectDelegate alloc] init];
 	
 	//Double Tap Gesture
 	UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
@@ -215,5 +215,10 @@
 		}
     }
     return layers; 
+}
+
+- (void)dealloc {
+	[deleg release];
+	[super dealloc];
 }
 @end
