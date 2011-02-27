@@ -10,10 +10,10 @@
 
 
 @interface HPSavedGames : UITableViewController {
-    NSMutableArray *games;
+    NSArray *games;
 	NSString* name;
 }
 
 @property (retain) NSString* name;
-@property (nonatomic, retain) NSMutableArray *games;
+@property (nonatomic, retain) NSArray *games;
 @end

@@ -31,6 +31,7 @@
 @property CGFloat angle;
 @property CGFloat scale;
 @property int number;
+@property (assign) GameObjectDelegate* deleg;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
 - (void)addGestures;

@@ -197,7 +197,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>0229DFDF131A568B00440A58</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>GamePig.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>0229DFE0131A568B00440A58</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>GamePig.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>0229E044131A616E00440A58</string>
+						<key>history</key>
+						<array>
+							<string>0229DFE1131A568B00440A58</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {1366, 671}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>-1366 368 1366 712 -1366 312 1366 768 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -275,13 +316,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>36</integer>
+									<integer>20</integer>
+									<integer>4</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 81}, {200, 905}}</string>
+							<string>{{0, 23}, {200, 905}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +360,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>HPViewController.m</string>
+								<string>GameArrow.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +368,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>HPViewController.m</string>
+										<string>GameArrow.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>0229DFB3131A4E7400440A58</string>
+										<string>0229E043131A616E00440A58</string>
 										<key>history</key>
 										<array>
 											<string>027C44D913155863007D0C51</string>
@@ -339,12 +381,9 @@
 											<string>0261A0A81316BE3500FA24E7</string>
 											<string>0261A0A91316BE3500FA24E7</string>
 											<string>02202CE31316C82600F69278</string>
-											<string>02307A0913178C9E005F1A9F</string>
 											<string>02307A3313179038005F1A9F</string>
 											<string>02307A7413179381005F1A9F</string>
 											<string>02307A8A131795B1005F1A9F</string>
-											<string>022694FE131841BF0044133E</string>
-											<string>0226955A1318B5610044133E</string>
 											<string>022695841318C4900044133E</string>
 											<string>022695A51318C7D60044133E</string>
 											<string>022695A61318C7D60044133E</string>
@@ -358,28 +397,33 @@
 											<string>022696E313190A020044133E</string>
 											<string>022696E413190A020044133E</string>
 											<string>022696E513190A020044133E</string>
-											<string>02269749131911510044133E</string>
 											<string>024848461319180200776018</string>
 											<string>0248487513191B5C00776018</string>
 											<string>0248488C13191ECB00776018</string>
 											<string>0248488D13191ECB00776018</string>
 											<string>0248488E13191ECB00776018</string>
-											<string>024848A01319218700776018</string>
 											<string>024848A71319246500776018</string>
 											<string>024848BB13192CC600776018</string>
-											<string>024848D613193DF500776018</string>
 											<string>0216BA84131A21F400390C76</string>
-											<string>0216BAEE131A2E3700390C76</string>
-											<string>0216BAEF131A2E3700390C76</string>
 											<string>0216BAF2131A2E3700390C76</string>
 											<string>0216BAF3131A2E3700390C76</string>
 											<string>0216BAF5131A2E3700390C76</string>
-											<string>0216BB1B131A364A00390C76</string>
-											<string>0216BB1C131A364A00390C76</string>
-											<string>0216BB1D131A364A00390C76</string>
-											<string>0216BB1E131A364A00390C76</string>
 											<string>0229DFA8131A4C4F00440A58</string>
-											<string>0229DFA9131A4C4F00440A58</string>
+											<string>0229DFD4131A568B00440A58</string>
+											<string>0229DFD6131A568B00440A58</string>
+											<string>0229DFD7131A568B00440A58</string>
+											<string>0229DFDA131A568B00440A58</string>
+											<string>0229DFDC131A568B00440A58</string>
+											<string>0229E019131A600C00440A58</string>
+											<string>0229E01D131A600C00440A58</string>
+											<string>0229E02F131A60A000440A58</string>
+											<string>0229E03C131A616E00440A58</string>
+											<string>0229E03D131A616E00440A58</string>
+											<string>0229E03E131A616E00440A58</string>
+											<string>0229E03F131A616E00440A58</string>
+											<string>0229E040131A616E00440A58</string>
+											<string>0229E041131A616E00440A58</string>
+											<string>0229E042131A616E00440A58</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -580,8 +624,9 @@
 		<string>0229DFAD131A4C4F00440A58</string>
 		<string>0229DFAE131A4C4F00440A58</string>
 		<string>027C448113152521007D0C51</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>0229DFDF131A568B00440A58</string>
 		<string>/Users/dead/Desktop/HP/HnP.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -601,12 +646,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>GameBlock.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

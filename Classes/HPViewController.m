@@ -126,7 +126,6 @@
 }
 
 - (void)initializeViews {
-	//TODO: Disable iOS toolbar
 	CGRect tmp = CGRectMake(0, 0, 1024, PALETTE_HEIGHT);
 	
 	//This provides a translucent background for the palette
@@ -223,9 +222,8 @@
 - (void)handleTranslation:(NSNotification*)n {
 	GameObject* o = [n object];
 	if ([o.view isDescendantOfView:self.palette]) {
-		//TODO:add to game area & replace in palette if required
 		int i = [self.pObjects indexOfObject:o];
-		o.center = CGPointMake(o.center.x , o.center.y - PALETTE_HEIGHT);
+		o.center = CGPointMake(o.center.x + gameArea.contentOffset.x, o.center.y - PALETTE_HEIGHT);
 		o.scale = 2.0;
 		[o updateView];
 		[self.pObjects removeObjectAtIndex:i];
@@ -262,54 +260,27 @@
 		
 		if ([wObjects count] > 0) {
 			while ([wObjects count] > 0) {
-				[[wObjects objectAtIndex:0] removeFromSuperview];
+				if ([[wObjects objectAtIndex:0] isKindOfClass:[UIView class]])
+					[[wObjects objectAtIndex:0] removeFromSuperview];
+				else {
+					GameObject* tmp = [wObjects objectAtIndex:0];
+					if ([tmp isKindOfClass:[GameArrow class]])
+					{
+						[[(GameArrow*)tmp arr] removeFromSuperview];
+						[[(GameArrow*)tmp dir] removeFromSuperview];
+					}
+					else [tmp.view removeFromSuperview];
+				}
 				[wObjects removeObjectAtIndex:0];
 			}
 			return;
 		}
-		UIImage* dir = [UIImage imageNamed:@"direction-degree.png"];
-		UIImageView* prj = [[UIImageView alloc] initWithImage:dir];
-		CGPoint cen = wolf.view.center;//Don't care about scaling
-		prj.frame = CGRectMake((cen.x+wolf.view.frame.size.width/3), (cen.y-wolf.view.frame.size.height/2-272/2), 155, 272);
-		//prj.layer.anchorPoint = CGPointMake(0, 0.5);
-		prj.transform = CGAffineTransformRotate(CGAffineTransformIdentity, wolf.angle);
-		[gameArea addSubview:prj];
-		[wObjects addObject:prj];
-		
-		//Arrow
-		dir = [UIImage imageNamed:@"direction-arrow.png"];
-		UIImageView* arr = [[UIImageView alloc] initWithImage:dir];
-		cen = wolf.view.center;//Don't care about scaling
-		arr.frame = CGRectMake(prj.center.x-74, prj.center.y-430/2, 74, 430);
-		//arr.layer.anchorPoint = CGPointMake(0.5, 1);
-		arr.transform = CGAffineTransformRotate(CGAffineTransformIdentity, d2r(90));
-		[gameArea addSubview:arr];
-		[wObjects addObject:arr];
-		arr.userInteractionEnabled = YES;
-		UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(translateAim:)];
-		[arr addGestureRecognizer:panGestureRecognizer];
-		[panGestureRecognizer release];
+		//TODO:add breath
+		GameArrow* arrow = [[GameArrow alloc] initWithFrame:CGRectMake(0, 0, 100, 100) Angle:0 Number:objCounter++ Wolf:wolf];
+		[gameArea addSubview:arrow.arr];
+		[gameArea addSubview:arrow.dir];
+		[wObjects addObject:arrow];		
 	}	
-}
-
-
-- (void)translateAim:(UIGestureRecognizer *)gesture {
-	// MODIFIES: object model (coordinates)
-	// REQUIRES: game in designer mode
-	// EFFECTS: the user drags around the object with one finger
-	//          if the object is in the palette, it will be moved in the game area & scaled up
-	UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gesture;
-	if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
-		CGPoint translation = [panGesture translationInView:panGesture.view];
-		double angle = atan2(translation.y, translation.x);
-		NSLog(@"%lf", angle);
-		panGesture.view.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle+d2r(90));
-		[panGesture setTranslation:CGPointZero inView:panGesture.view];
-		
-	}
-	if (panGesture.state == UIGestureRecognizerStateEnded) {
-		[panGesture setTranslation:CGPointZero inView:panGesture.view];
-	}
 }
 
 
@@ -500,6 +471,7 @@
 		[[[pObjects objectAtIndex:i] view] setUserInteractionEnabled:NO];
 	}
 	//Add gameBreath
+	
 	
 	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
 												Angle:0 Number:objCounter++ Velocity:CGPointMake(50, 15) trajectoryAngle:d2r(50)];

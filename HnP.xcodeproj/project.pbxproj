@@ -11,6 +11,7 @@
 		02269482131804A60044133E /* HPSavedGames.m in Sources */ = {isa = PBXBuildFile; fileRef = 02269481131804A60044133E /* HPSavedGames.m */; };
 		022694FD1318406F0044133E /* GameBreath.m in Sources */ = {isa = PBXBuildFile; fileRef = 022694FC1318406F0044133E /* GameBreath.m */; };
 		0229DFC7131A52FC00440A58 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0229DFC6131A52FC00440A58 /* icon.png */; };
+		0229E018131A5DA400440A58 /* GameArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0229E017131A5DA400440A58 /* GameArrow.m */; };
 		02307A8E131795D2005F1A9F /* iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A8D131795D2005F1A9F /* iron.png */; };
 		02307A91131795E9005F1A9F /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A8F131795E9005F1A9F /* stone.png */; };
 		02307A92131795E9005F1A9F /* straw.png in Resources */ = {isa = PBXBuildFile; fileRef = 02307A90131795E9005F1A9F /* straw.png */; };
@@ -113,6 +114,8 @@
 		022694FB1318406F0044133E /* GameBreath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBreath.h; sourceTree = "<group>"; };
 		022694FC1318406F0044133E /* GameBreath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBreath.m; sourceTree = "<group>"; };
 		0229DFC6131A52FC00440A58 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0229E016131A5DA400440A58 /* GameArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameArrow.h; sourceTree = "<group>"; };
+		0229E017131A5DA400440A58 /* GameArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameArrow.m; sourceTree = "<group>"; };
 		02307A8D131795D2005F1A9F /* iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iron.png; sourceTree = "<group>"; };
 		02307A8F131795E9005F1A9F /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone.png; sourceTree = "<group>"; };
 		02307A90131795E9005F1A9F /* straw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = straw.png; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 				027C44B3131532A9007D0C51 /* GameObjectDelegate.m */,
 				022694FB1318406F0044133E /* GameBreath.h */,
 				022694FC1318406F0044133E /* GameBreath.m */,
+				0229E016131A5DA400440A58 /* GameArrow.h */,
+				0229E017131A5DA400440A58 /* GameArrow.m */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -725,6 +730,7 @@
 				027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */,
 				02269482131804A60044133E /* HPSavedGames.m in Sources */,
 				022694FD1318406F0044133E /* GameBreath.m in Sources */,
+				0229E018131A5DA400440A58 /* GameArrow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

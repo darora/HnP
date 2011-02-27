@@ -16,6 +16,7 @@
 @synthesize angle;
 @synthesize scale;
 @synthesize number;
+@synthesize deleg;
 
 //- (void)setCenter:(CGPoint)p {
 //	self.view.center = p;

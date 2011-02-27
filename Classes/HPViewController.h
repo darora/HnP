@@ -13,6 +13,7 @@
 #import <GamePig.h>
 #import <GameBlock.h>
 #import <GameBreath.h>
+#import <GameArrow.h>
 #import <GameObjectFoundry.h>
 #import <PhysicsWorldController.h>
 #import <HPSavedGames.h>
