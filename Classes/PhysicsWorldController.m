@@ -84,12 +84,11 @@
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 15.0f;
 	fixtureDef.friction = 0.3f;
-	fixtureDef.restitution = 0.35f; // 0 is a lead ball, 1 is a super bouncy ball
+	fixtureDef.restitution = 0.35f;
 	if ([object class] == [GameBreath class]) {
 		GameBreath* tmp = (GameBreath*)object;
 		float32 x = tmp.velocity;
 		float32 y = tmp.trajAngle;
-		NSLog(@"%f, %f is linear velocity.", x, y);
 		body->SetLinearVelocity(b2Vec2(x,y));
 	}		
 	body->CreateFixture(&fixtureDef);
@@ -112,16 +111,32 @@
 		{
 			//UIView *oneView = (UIView *)b->GetUserData();
 			GameObject* o = (GameObject*)b->GetUserData();
-			// y Position subtracted because of flipped coordinate system
-			CGPoint newCenter = CGPointMake(b->GetPosition().x * PTM_RATIO,
-											DEF_HEIGHT - b->GetPosition().y * PTM_RATIO);
-			o.center = newCenter;
 			
-			double ang = - b->GetAngle();
+			if (o.state == gg) {
+				//remove obj
+				b2Body* tmp = b->GetNext();
+				world->DestroyBody(b);
+				b = tmp;
+				[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"phyObjectDeleted" object:o]];
+			}
+			else if (o.state == stale) {
+				//half the speed of the breath
+				o.state = fresh;
+				b2Vec2 tmpbb = b->GetLinearVelocity();
+				tmpbb.x /= 2;
+				tmpbb.y /= 2;
+				b->SetLinearVelocity(tmpbb);
+			}
+			else {//fresh, normal collisions
 			
-			o.angle = ang;
-			[o updateView];
-			//oneView.transform = transform;
+				// y Position subtracted because of flipped coordinate system
+				CGPoint newCenter = CGPointMake(b->GetPosition().x * PTM_RATIO,	DEF_HEIGHT - b->GetPosition().y * PTM_RATIO);
+				o.center = newCenter;
+				double ang = - b->GetAngle();
+				o.angle = ang;
+				[o updateView];
+				//oneView.transform = transform;
+			}
 		}
 	}
 }

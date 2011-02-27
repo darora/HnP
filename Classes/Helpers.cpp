@@ -66,29 +66,46 @@ void CListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 			b2Vec2 vA = bodyA->GetLinearVelocityFromWorldPoint(point);		
 			b2Vec2 vB = bodyB->GetLinearVelocityFromWorldPoint(point);
 			float32 approachVelocity = b2Dot(vB-vA, worldManifold.normal);
-//			float32 approachVelocity = b2Dot(vB – vA, worldManifold.normal);
 			if (fabs(approachVelocity) > 30.0f)
 			{			
 				if ([o2 class] == [GamePig class]) {
-					//if (bodyA->GetType() == b2_dynamicBody) {
 						contact->SetEnabled(false);
 						if (sent == false) {
 							sent = true;
 							[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pigCollided" object:o2]];
 						}
-					//}
 				}
-				else if ([o1 class] == [GamePig class])
-					//if (bodyB->GetType() == b2_dynamicBody) {
+				else if ([o1 class] == [GamePig class]) {
 						contact->SetEnabled(false);
 						if (sent == false) {
 							sent = true;
 							[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pigCollided" object:o1]];
 						}
-					//}
+				}
 			}
 		}
 	}
+	if ([o1 class] == [GameBreath class] || [o2 class] == [GameBreath class])
+		if ([o1 class] == [GameBlock class] || [o2 class] == [GameBlock class]) {
+			contact->SetEnabled(false);
+			if ([o1 class] == [GameBlock class]) {
+				if ([(GameBlock*)o1 category] == straw) {
+					[o2 setState:stale];
+					[o1 setState:gg];
+				}
+				else
+					[o2 setState:gg];
+			}
+			else {
+				if ([(GameBlock*)o2 category] == straw) {
+					[o1 setState:stale];
+					[o2 setState:gg];
+				}
+				else
+					[o1 setState:gg];
+			}
+		}
+	//End breath stuff
 	
 }
 

@@ -17,6 +17,7 @@
 @synthesize scale;
 @synthesize number;
 @synthesize deleg;
+@synthesize state;
 
 //- (void)setCenter:(CGPoint)p {
 //	self.view.center = p;
@@ -32,6 +33,7 @@
 		self.size = CGSizeMake(f.size.width, f.size.height);
 		self.center = CGPointMake(f.origin.x + f.size.width/2, f.origin.y + f.size.height/2);
 		self.number = n;
+		self.state = fresh;
 		self.scale = 1.0;
 	}
 	else
@@ -139,8 +141,9 @@
 	//          if the object is in the palette, it will be moved in the game area & scaled up
 	UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer *) gesture;
 	if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
-		//UIView *view = panGesture.view;
 		CGPoint translation = [panGesture translationInView:self.view.superview];
+		if (center.y > 600)
+			translation.y = -(center.y - 600);
 		[self setCenter:CGPointMake(self.center.x + translation.x, self.center.y + translation.y)];
 		[self updateView];
 		[panGesture setTranslation:CGPointZero inView:self.view.superview];
@@ -151,11 +154,6 @@
 		if ((self.view.frame.origin.y + self.view.frame.size.height) > 60)
 		{
 			[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"objectDidTranslate" object:self]];
-			//if ([self.img isDescendantOfView:controller.pallette]) {
-//				self.img.frame = [self.img.superview convertRect:self.img.frame toView:controller.gamearea];
-//				self.img.frame = CGRectMake(self.img.frame.origin.x, self.img.frame.origin.y, 200, 250);
-//				[controller addToView:controller.gamearea GameObject:self];
-//			}
 		}
 		else {
 			[self restoreToPalette];

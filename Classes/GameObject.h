@@ -16,6 +16,7 @@
 #define pigDefault CGRectMake(300, 0, 60, 60)
 #define wolfDefault CGRectMake(0, 0, 90, 60)
 #define blockDefault CGRectMake(175, 0, 60, 60)
+typedef enum { fresh, stale, gg} quality;
 
 @interface GameObject : UIViewController <NSCoding> {
 	CGSize size;
@@ -24,8 +25,10 @@
 	CGPoint center;
 	int number;
 	GameObjectDelegate* deleg;
+	quality state;
 }
 
+@property quality state;
 @property CGPoint center;
 @property CGSize size;
 @property CGFloat angle;

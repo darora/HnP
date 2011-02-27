@@ -53,12 +53,15 @@
 - (void)initializeViews;
 - (void)initializePalette;
 - (void)initializeListeners;
+
 - (void)handleTranslation:(NSNotification*)n;
 - (void)handleDoubleTap:(NSNotification*)n;
 - (void)handleSingleTap:(NSNotification*)n;
 - (void)handlePaletteReturn:(NSNotification*)n;
 - (void)handlePigCollision:(NSNotification*)n;
 - (void)handleBreathExpired:(NSNotification*)n;
+- (void)handlePhyObjectDeletion:(NSNotification*)n;
+- (void)handleWolfExpired:(NSNotification*)n;
 
 - (void)resetScreen;
 - (void)removeEverything;

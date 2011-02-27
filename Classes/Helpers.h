@@ -11,6 +11,8 @@
 #import <Box2D.h>
 #import <GameObject.h>
 #import <GamePig.h>
+#import <GameBreath.h>
+#import <GameBlock.h>
 
 void createBodyHelper(b2Body* b, UIView* v);
 class CListener : public b2ContactListener

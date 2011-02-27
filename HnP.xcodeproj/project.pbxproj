@@ -77,8 +77,6 @@
 		AF7BCDE61314F1B2009C8DCB /* GameBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDE51314F1B2009C8DCB /* GameBlock.m */; };
 		AF7BCDE91314F1BC009C8DCB /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDE81314F1BC009C8DCB /* GamePig.m */; };
 		AF7BCDEC1314F1E4009C8DCB /* GameObjectFoundry.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */; };
-		AF7BCDEF1314F238009C8DCB /* PhysicsObjectFoundry.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDEE1314F238009C8DCB /* PhysicsObjectFoundry.m */; };
-		AF7BCDF21314F269009C8DCB /* HPBridging.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDF11314F269009C8DCB /* HPBridging.m */; };
 		AF7BCE6E1314FC0F009C8DCB /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCE6D1314FC0F009C8DCB /* Helpers.cpp */; };
 		AF7BCEE713151913009C8DCB /* cloud1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7BCED513151912009C8DCB /* cloud1.png */; };
 		AF7BCEE813151913009C8DCB /* cloud2.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7BCED613151912009C8DCB /* cloud2.png */; };
@@ -236,10 +234,6 @@
 		AF7BCDE81314F1BC009C8DCB /* GamePig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePig.m; sourceTree = "<group>"; };
 		AF7BCDEA1314F1E4009C8DCB /* GameObjectFoundry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectFoundry.h; sourceTree = "<group>"; };
 		AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectFoundry.m; sourceTree = "<group>"; };
-		AF7BCDED1314F238009C8DCB /* PhysicsObjectFoundry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsObjectFoundry.h; sourceTree = "<group>"; };
-		AF7BCDEE1314F238009C8DCB /* PhysicsObjectFoundry.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = PhysicsObjectFoundry.m; sourceTree = "<group>"; };
-		AF7BCDF01314F269009C8DCB /* HPBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPBridging.h; sourceTree = "<group>"; };
-		AF7BCDF11314F269009C8DCB /* HPBridging.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = HPBridging.m; sourceTree = "<group>"; };
 		AF7BCE6C1314FC0F009C8DCB /* Helpers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Helpers.h; sourceTree = "<group>"; };
 		AF7BCE6D1314FC0F009C8DCB /* Helpers.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Helpers.cpp; sourceTree = "<group>"; };
 		AF7BCED513151912009C8DCB /* cloud1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud1.png; sourceTree = "<group>"; };
@@ -295,8 +289,6 @@
 				1D3623240D0F684500981E51 /* HPAppDelegate.h */,
 				28D7ACF60DDB3853001CB0EB /* HPViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* HPViewController.m */,
-				AF7BCDF01314F269009C8DCB /* HPBridging.h */,
-				AF7BCDF11314F269009C8DCB /* HPBridging.m */,
 				02269480131804A60044133E /* HPSavedGames.h */,
 				02269481131804A60044133E /* HPSavedGames.m */,
 			);
@@ -501,8 +493,6 @@
 				AF6F63191314EF34007B65AD /* Box2D */,
 				AF6F63A61314EFD7007B65AD /* PhysicsWorldController.h */,
 				AF6F63A71314EFD7007B65AD /* PhysicsWorldController.m */,
-				AF7BCDED1314F238009C8DCB /* PhysicsObjectFoundry.h */,
-				AF7BCDEE1314F238009C8DCB /* PhysicsObjectFoundry.m */,
 				AF7BCE6C1314FC0F009C8DCB /* Helpers.h */,
 				AF7BCE6D1314FC0F009C8DCB /* Helpers.cpp */,
 			);
@@ -724,8 +714,6 @@
 				AF7BCDE61314F1B2009C8DCB /* GameBlock.m in Sources */,
 				AF7BCDE91314F1BC009C8DCB /* GamePig.m in Sources */,
 				AF7BCDEC1314F1E4009C8DCB /* GameObjectFoundry.m in Sources */,
-				AF7BCDEF1314F238009C8DCB /* PhysicsObjectFoundry.m in Sources */,
-				AF7BCDF21314F269009C8DCB /* HPBridging.m in Sources */,
 				AF7BCE6E1314FC0F009C8DCB /* Helpers.cpp in Sources */,
 				027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */,
 				02269482131804A60044133E /* HPSavedGames.m in Sources */,

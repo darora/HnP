@@ -218,7 +218,34 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileSelected:) name:@"fileNameChosen" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePigCollision:) name:@"pigCollided" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBreathExpired:) name:@"removeBreath" object:nil];
-	//TODO: Listener for wolfDidExpire
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePhyObjectDeletion:) name:@"phyObjectDeleted" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWolfExpired:) name:@"wolfDidExpire" object:nil];
+}
+
+- (void)handlePhyObjectDeletion:(NSNotification*)n {
+	GameObject* tmp = [n object];
+	if ([tmp class] == [GameBreath class]) {
+		[[(GameBreath*)tmp time] invalidate];
+		[self removeFromGameArea:tmp];
+		if (self.phy) {
+			[self.phy.tickTimer invalidate];
+			[self.phy release];
+			self.phy = nil;
+			[start setTitle:@"Start" forState:UIControlStateNormal];
+		}
+		for (int i=0; i<[objects count]; i++) {
+			GameObject* tmp = [objects objectAtIndex:i];
+			if ([tmp class] == [GameWolf class]) {
+				tmp.view.userInteractionEnabled = YES;
+				tmp.view.multipleTouchEnabled = YES;
+			}
+			else if ([tmp class] == [GameBreath class]) {
+				[[(GameBreath*)tmp time] invalidate];
+				[self removeFromGameArea:tmp];
+			}
+		}
+	}
+	[self removeFromGameArea:tmp];	
 }
 
 - (void)handleTranslation:(NSNotification*)n {
@@ -309,6 +336,7 @@
 
 - (void)handleBreathExpired:(NSNotification*)n {
 	GameBreath* tmp = (GameBreath*)[n object];
+	[tmp.time invalidate];
 	[self.phy removeBody:tmp];
 	[self removeFromGameArea:tmp];
 	
@@ -335,7 +363,6 @@
 
 - (void)resetScreen {
 	[self removeEverything];
-	[start setTitle:@"Start" forState:UIControlStateNormal];
 	[self initializePalette];
 }
 
@@ -375,6 +402,7 @@
 		[self.wObjects removeObjectAtIndex:0];
 		[tmp release];
 	}
+	[start setTitle:@"Start" forState:UIControlStateNormal];
 }
 
 - (void)saveButtonPressed {
@@ -485,7 +513,7 @@
 	
 	//else start physics, add breath
 	
-	GameWolf* wolf;
+	GameWolf* wolf = nil;
 	for (int i=0; i < [objects count]; i++) {
 		GameObject* o = [objects objectAtIndex:i];
 		[[o view] setUserInteractionEnabled:NO];
@@ -502,18 +530,18 @@
 			GameArrow* tmp = [wObjects objectAtIndex:i];
 			scale = 1/[tmp sca];
 			angle = [tmp ang];
-			NSLog(@"%lf", scale);
 			[[[wObjects objectAtIndex:i] arr] removeFromSuperview];
 			[[[wObjects objectAtIndex:i] dir] removeFromSuperview];
 			break;
 		}
 	}
-	
-	GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
-												Angle:0 Number:objCounter++ Velocity:scale*20000 trajectoryAngle:-angle*50];
-	[self addToGameArea:b];
-	wolf.lives--;
-	[wolf animate];
+	if (wolf) {
+		GameBreath* b = [[GameBreath alloc] initWithFrame:CGRectMake((wolf.center.x+wolf.view.frame.size.width/2), (wolf.center.y-wolf.view.frame.size.height/2), 112, 104) 
+												Angle:0 Number:objCounter++ Velocity:scale*20000 trajectoryAngle:-angle*50*(scale*500)];
+		[self addToGameArea:b];
+		wolf.lives--;
+		[wolf animate];
+	}
 	phy = [[PhysicsWorldController alloc] initWithObjectsArray:self.objects];
 	[self.start setTitle:@"Stop" forState:UIControlStateNormal];
 }
@@ -538,7 +566,26 @@
 	[wObjects addObject:label];
 	//TODO: Reset & load next level
 }
-
+- (void)handleWolfExpired:(NSNotification*)n {
+	if (self.phy) {
+		[self.phy.tickTimer invalidate];
+		[self.phy release];
+		self.phy = nil;
+	}
+	GameWolf* wolf = [n object];
+	[wolf die];
+	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 800, 500)];
+	label.text = @"The piggy that could be lives! :D\n Wolf loses";
+	label.textColor = [UIColor redColor];
+	label.shadowColor = [UIColor yellowColor];
+	label.backgroundColor = [UIColor clearColor];
+	label.shadowOffset = CGSizeMake(1,1);
+	label.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size: 36.0];
+	label.textAlignment = UITextAlignmentCenter;
+	[gameArea addSubview:label];
+	[wObjects addObject:label];
+	//TODO: Reset & load next level
+}
 
 
 

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GameObject.h>
 
+
 @interface GameBreath : GameObject {
 	double velocity;
 	double trajAngle;
