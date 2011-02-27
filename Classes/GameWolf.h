@@ -16,7 +16,18 @@
 @property int lives;
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
+//REQUIRES: See GameObject
+//MODIFIES: self.view with the image of the wolf
+//RETURNS: self
+
 - (void)animate;
+//REQUIRES: -
+//MODIFIES: Plays the animation sequence of the wolf blowing
+//RETURNS: -
+
 - (void)die;
+//REQUIRES: -
+//MODIFIES: Plays the animation sequence of the wolf dying
+//RETURNS: -
 
 @end

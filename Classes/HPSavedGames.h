@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/*
+ * @file
+ * Creates the tableviewcontroller used inside the popover for 'load' button's response
+ */
 
 @interface HPSavedGames : UITableViewController {
     NSArray *games;

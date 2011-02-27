@@ -98,8 +98,7 @@
 }
 
 -(void)tick:(NSTimer *)timer
-{
-	
+{	
 	int32 velocityIterations = 8;
 	int32 positionIterations = 4;
 	
@@ -165,9 +164,6 @@
 			[self addPhysicalBodyForGameObject:[objects objectAtIndex:i]];
 		}
 		
-		//TODO: This code is to be ported into the global controller.
-		//[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60.0)];
-		//	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
 		if ([objects count] > 0)
 			self.tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
 	}
@@ -179,7 +175,6 @@
 }
 
 - (void)dealloc {
-	//TODO release world & invalidate timer
 	if ([tickTimer isValid])
 		[tickTimer invalidate];
 	[tickTimer release];

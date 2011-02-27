@@ -15,13 +15,20 @@
 #import <GameBlock.h>
 
 void createBodyHelper(b2Body* b, UIView* v);
+
 class CListener : public b2ContactListener
 
 {
 public:
-	//void BeginContact(b2Contact* contact);
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
+	//This method is used by box2d's world to resolve contact points
+	//It modifies the 'state'/ quality of certain objects as dictated by the PS
+	//These changes in state are handled by the world in PhysicsWorldController
+	//Pig's collisions within some perimeters results in a pigCollided notification, which is handled by the global controller.
+	
 	void Reset();
+	//Only here for legacy reason..should be able to remove this w/o problems soon..
+	
 private:
 	bool sent;
 };

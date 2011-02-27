@@ -14,5 +14,7 @@
 }
 
 - (id)initWithFrame:(CGRect)f Angle:(CGFloat)a Number:(int)n;
+//See comments on GameWolf's initializer
+
 
 @end

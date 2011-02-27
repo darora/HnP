@@ -76,7 +76,6 @@
 		AF7BCDE31314F1A7009C8DCB /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDE21314F1A7009C8DCB /* GameWolf.m */; };
 		AF7BCDE61314F1B2009C8DCB /* GameBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDE51314F1B2009C8DCB /* GameBlock.m */; };
 		AF7BCDE91314F1BC009C8DCB /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDE81314F1BC009C8DCB /* GamePig.m */; };
-		AF7BCDEC1314F1E4009C8DCB /* GameObjectFoundry.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */; };
 		AF7BCE6E1314FC0F009C8DCB /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF7BCE6D1314FC0F009C8DCB /* Helpers.cpp */; };
 		AF7BCEE713151913009C8DCB /* cloud1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7BCED513151912009C8DCB /* cloud1.png */; };
 		AF7BCEE813151913009C8DCB /* cloud2.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7BCED613151912009C8DCB /* cloud2.png */; };
@@ -232,8 +231,6 @@
 		AF7BCDE51314F1B2009C8DCB /* GameBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBlock.m; sourceTree = "<group>"; };
 		AF7BCDE71314F1BC009C8DCB /* GamePig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePig.h; sourceTree = "<group>"; };
 		AF7BCDE81314F1BC009C8DCB /* GamePig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePig.m; sourceTree = "<group>"; };
-		AF7BCDEA1314F1E4009C8DCB /* GameObjectFoundry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectFoundry.h; sourceTree = "<group>"; };
-		AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectFoundry.m; sourceTree = "<group>"; };
 		AF7BCE6C1314FC0F009C8DCB /* Helpers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Helpers.h; sourceTree = "<group>"; };
 		AF7BCE6D1314FC0F009C8DCB /* Helpers.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Helpers.cpp; sourceTree = "<group>"; };
 		AF7BCED513151912009C8DCB /* cloud1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud1.png; sourceTree = "<group>"; };
@@ -510,8 +507,6 @@
 				AF7BCDE51314F1B2009C8DCB /* GameBlock.m */,
 				AF7BCDE71314F1BC009C8DCB /* GamePig.h */,
 				AF7BCDE81314F1BC009C8DCB /* GamePig.m */,
-				AF7BCDEA1314F1E4009C8DCB /* GameObjectFoundry.h */,
-				AF7BCDEB1314F1E4009C8DCB /* GameObjectFoundry.m */,
 				027C44B2131532A9007D0C51 /* GameObjectDelegate.h */,
 				027C44B3131532A9007D0C51 /* GameObjectDelegate.m */,
 				022694FB1318406F0044133E /* GameBreath.h */,
@@ -713,7 +708,6 @@
 				AF7BCDE31314F1A7009C8DCB /* GameWolf.m in Sources */,
 				AF7BCDE61314F1B2009C8DCB /* GameBlock.m in Sources */,
 				AF7BCDE91314F1BC009C8DCB /* GamePig.m in Sources */,
-				AF7BCDEC1314F1E4009C8DCB /* GameObjectFoundry.m in Sources */,
 				AF7BCE6E1314FC0F009C8DCB /* Helpers.cpp in Sources */,
 				027C44B4131532A9007D0C51 /* GameObjectDelegate.m in Sources */,
 				02269482131804A60044133E /* HPSavedGames.m in Sources */,
